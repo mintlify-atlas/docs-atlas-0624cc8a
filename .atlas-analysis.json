@@ -1,0 +1,98 @@
+{
+  "projectType": "saas",
+  "projectName": "OpenComic",
+  "projectDescription": "A feature-rich comic and manga reader for desktop with support for multiple formats, cloud storage, and advanced reading features",
+  "theme": "almond",
+  "primaryColor": "#cf4337",
+  "lightColor": "#db9c91",
+  "darkColor": "#f1ebe5",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "introduction",
+              "installation",
+              "quickstart"
+            ]
+          },
+          {
+            "group": "Core Features",
+            "pages": [
+              "features/file-formats",
+              "features/reading-modes",
+              "features/library-management",
+              "features/bookmarks-and-progress"
+            ]
+          },
+          {
+            "group": "Advanced Features",
+            "pages": [
+              "advanced/server-connections",
+              "advanced/opds-catalogs",
+              "advanced/tracking-integration",
+              "advanced/ai-image-enhancement",
+              "advanced/customization"
+            ]
+          },
+          {
+            "group": "Guides",
+            "pages": [
+              "guides/keyboard-shortcuts",
+              "guides/gamepad-navigation",
+              "guides/building-from-source",
+              "guides/portable-mode",
+              "guides/troubleshooting"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Community",
+        "groups": [
+          {
+            "group": "Contributing",
+            "pages": [
+              "community/contributing",
+              "community/translations",
+              "community/bug-reports"
+            ]
+          },
+          {
+            "group": "Resources",
+            "pages": [
+              "resources/changelog",
+              "resources/faq",
+              "resources/support"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "keyFeatures": [
+    "Multi-format support (CBZ, CBR, CB7, PDF, EPUB, and many image formats)",
+    "Advanced reading modes (Manga, Webtoon, Double page)",
+    "Cloud storage integration (SMB, FTP, SFTP, S3, WebDAV)",
+    "AI-powered image enhancement (upscaling, descreen, artifact removal)",
+    "Tracking integration with AniList and MyAnimeList",
+    "OPDS catalog support",
+    "Customizable shortcuts and gamepad navigation",
+    "Image filters and adjustments",
+    "Master folders and label organization",
+    "Multi-window and tab support"
+  ],
+  "publicApiSurface": [
+    "File format support: JPG, JP2, JXR, JXL, PNG, APNG, AVIF, HEIC, WEBP, GIF, SVG, BMP, ICO",
+    "Compressed formats: RAR, ZIP, 7Z, TAR, LZH, ACE, CBR, CBZ, CBA, CB7, CBT",
+    "Document formats: PDF, EPUB",
+    "Audio formats: MP3, M4A, MP4, WEBM, WEBA, OGG, OPUS, WAV, FLAC",
+    "Server protocols: smb://, ftp://, ftps://, scp://, sftp://, ssh://, s3://, webdav://, webdavs://",
+    "Tracking APIs: AniList, MyAnimeList",
+    "OPDS catalog support",
+    "Custom URL scheme: opencomic://"
+  ]
+}
