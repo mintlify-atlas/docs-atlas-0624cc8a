@@ -1,0 +1,397 @@
+---
+title: OPDS catalogs
+description: Connect to OPDS catalogs to browse and download comics and manga from online libraries
+---
+
+OPDS (Open Publication Distribution System) is an open standard for digital content distribution. OpenComic supports OPDS to let you browse, preview, and download comics and manga from online catalogs.
+
+## What is OPDS?
+
+OPDS provides a standardized way to:
+
+- **Browse** digital publications from online catalogs
+- **Search** for specific titles or authors
+- **Download** comics and manga directly to OpenComic
+- **Track** your reading progress across devices
+
+## Default catalogs
+
+OpenComic includes several default OPDS catalogs:
+
+<CardGroup cols={2}>
+  <Card title="Feedbooks" icon="book">
+    Free and public domain ebooks
+    
+    `https://catalog.feedbooks.com/catalog/index.json`
+  </Card>
+  
+  <Card title="Project Gutenberg" icon="book-open">
+    Free eBooks since 1971
+    
+    `https://m.gutenberg.org/ebooks.opds/`
+  </Card>
+  
+  <Card title="unglue.it" icon="unlock">
+    Free ebooks from creative commons
+    
+    `https://unglue.it/api/opds/`
+  </Card>
+  
+  <Card title="textos.info" icon="language">
+    Spanish open library (Biblioteca virtual)
+    
+    `https://www.textos.info/catalogo.atom`
+  </Card>
+</CardGroup>
+
+## Adding OPDS catalogs
+
+<Steps>
+  <Step title="Open catalog settings">
+    Navigate to the OPDS section in OpenComic settings or sidebar.
+  </Step>
+  
+  <Step title="Add new catalog">
+    Click the add button to create a new catalog entry.
+  </Step>
+  
+  <Step title="Configure catalog details">
+    Enter the catalog information:
+    
+    - **Title**: Display name for the catalog
+    - **URL**: OPDS feed URL (must start with `http://` or `https://`)
+    - **Username**: Authentication username (optional)
+    - **Password**: Authentication password (optional)
+  </Step>
+  
+  <Step title="Configure behavior">
+    Set catalog preferences:
+    
+    - **Auto-download**: Automatically download when opening publications
+    - **Show on left**: Display catalog in the sidebar for quick access
+  </Step>
+  
+  <Step title="Browse catalog">
+    Open the catalog to browse available publications.
+  </Step>
+</Steps>
+
+## Catalog authentication
+
+Some OPDS catalogs require authentication:
+
+### Basic authentication
+
+- Username and password stored securely (encrypted)
+- Automatically sent with each request
+- Supports multiple authentication methods
+
+### Authentication types
+
+OpenComic auto-detects the authentication method:
+- Basic HTTP authentication
+- Token-based authentication
+- OAuth (for supported catalogs)
+
+<Note>
+  Credentials are encrypted and stored securely in your OpenComic configuration.
+</Note>
+
+## Browsing catalogs
+
+### Navigation structure
+
+OPDS catalogs typically organize content into:
+
+- **Categories**: Genre, author, series groupings
+- **Collections**: Curated sets of publications
+- **Facets**: Filtering options (new releases, popular, etc.)
+- **Search**: Full-text search across the catalog
+
+### Publication metadata
+
+Each publication displays:
+
+- Cover image (poster)
+- Title and subtitle
+- Authors and contributors (writer, artist, colorist, etc.)
+- Series and collection information
+- Description and synopsis
+- Publication and modification dates
+- Number of pages
+- Language
+- Publisher and rights information
+
+### Groups and navigation
+
+Catalogs can organize content into:
+
+- **Navigation feeds**: Browse by category or collection
+- **Publication groups**: Related titles displayed together
+- **Faceted navigation**: Filter by criteria
+
+## Searching catalogs
+
+<Steps>
+  <Step title="Open search">
+    Click the search button while viewing a catalog (Ctrl+F).
+  </Step>
+  
+  <Step title="Enter search query">
+    Type your search terms (title, author, series, etc.).
+  </Step>
+  
+  <Step title="Browse results">
+    View matching publications with metadata and covers.
+  </Step>
+</Steps>
+
+<Note>
+  Search functionality depends on the catalog's OPDS implementation. Not all catalogs support search.
+</Note>
+
+## Downloading publications
+
+### Download options
+
+Publications may offer multiple acquisition links:
+
+- **Direct download**: Download file directly (CBZ, CBR, PDF, EPUB)
+- **Buy**: Purchase link (opens in browser)
+- **Borrow**: Temporary access (if supported)
+- **Subscribe**: Subscription required (opens in browser)
+- **Sample**: Free preview or sample
+
+### Automatic downloads
+
+<AccordionGroup>
+  <Accordion title="Enable auto-download">
+    When enabled, OpenComic automatically downloads and opens the best available format when you select a publication.
+    
+    Best format priority:
+    1. CBZ/CB7 (comic archives)
+    2. PDF documents
+    3. EPUB books
+  </Accordion>
+  
+  <Accordion title="Manual download">
+    When disabled, view publication details first and choose download options manually.
+  </Accordion>
+</AccordionGroup>
+
+### Download location
+
+Configure where OPDS downloads are saved:
+
+```javascript
+// Set download folder in settings
+config.downloadOpdsFolder = '/path/to/downloads'
+```
+
+Downloads are:
+- Automatically added to your library
+- Tracked for later access
+- Associated with the catalog
+
+## Publication details
+
+View comprehensive metadata for each publication:
+
+### Content information
+
+- **Title and subtitle**: Full publication names
+- **Series**: Part of a series or collection
+- **Authors**: Writers, artists, and contributors
+  - Writer
+  - Penciller/Artist
+  - Inker
+  - Colorist
+  - Letterer
+  - Cover artist
+  - Illustrator
+  - Editor
+  - Translator
+  - Narrator
+- **Publisher**: Publishing company
+- **Pages**: Number of pages
+
+### Classification
+
+- **Subject**: Tags and categories
+- **Genre**: Content genre
+- **Language**: Publication language
+
+### Additional details
+
+- **Description**: Short description
+- **Long description**: Extended synopsis
+- **Rights**: Copyright and licensing information
+- **Identifiers**: ISBN, DOI, or other identifiers
+- **Web links**: Related URLs
+- **Release date**: Publication date
+- **Modified date**: Last update
+
+## Cover image caching
+
+OpenComic caches cover images for better performance:
+
+- **Automatic caching**: Images cached as you browse
+- **Poster generation**: Creates optimized thumbnails
+- **Persistent cache**: Images remain cached between sessions
+
+### Cache management
+
+Covers are cached using:
+- SHA hash for unique identification
+- Efficient storage in OpenComic's cache directory
+- Automatic cleanup of old entries
+
+## Advanced features
+
+### Faceted browsing
+
+Many catalogs support facets for filtering:
+
+- **New releases**: Recently added content
+- **Popular**: Most downloaded or viewed
+- **Featured**: Editor's picks
+- **By date**: Publication date ranges
+- **By author**: Filter by creator
+
+Facets appear as filter options when browsing.
+
+### Navigation breadcrumbs
+
+OpenComic maintains navigation history:
+- Track current location in catalog structure
+- Quick navigation back to previous feeds
+- Resume browsing where you left off
+
+### Multiple acquisition formats
+
+When a publication offers multiple formats:
+
+1. OpenComic displays all available options
+2. You can choose the preferred format
+3. Each format shows file type (CBZ, PDF, EPUB, etc.)
+4. External links open in your default browser
+
+## Continue reading and recent additions
+
+Downloaded OPDS publications appear in:
+
+- **Continue reading**: Resume where you left off
+- **Recently added**: Newly downloaded content
+- **Library**: All downloaded publications
+
+### Reading progress
+
+OpenComic tracks:
+- Current page across all downloaded content
+- Last reading timestamp
+- Bookmarks and annotations
+
+## Catalog management
+
+### Edit catalog
+
+Modify catalog settings:
+
+1. Select catalog from the list
+2. Click edit button
+3. Update title, URL, credentials, or behavior
+4. Save changes
+
+### Remove catalog
+
+<Warning>
+  Removing a catalog does not delete previously downloaded publications.
+</Warning>
+
+<Steps>
+  <Step title="Select catalog">
+    Choose the catalog to remove.
+  </Step>
+  
+  <Step title="Confirm deletion">
+    Confirm you want to remove the catalog.
+  </Step>
+  
+  <Step title="Catalog removed">
+    The catalog is removed from your list (downloads remain intact).
+  </Step>
+</Steps>
+
+## OPDS URL formats
+
+### Supported formats
+
+- **OPDS 1.x**: XML/Atom feeds
+- **OPDS 2.0**: JSON feeds
+- **Mixed content**: Automatically detected and parsed
+
+### URL schemes
+
+```text
+// Standard HTTP/HTTPS
+https://catalog.example.com/opds/
+
+// OPDS-specific protocol
+opds://encoded-url
+opdsf://encoded-url  // OPDS feed
+opdss://encoded-url  // OPDS secure
+```
+
+## Best practices
+
+<CardGroup cols={2}>
+  <Card title="Use trusted catalogs" icon="shield-check">
+    Only add catalogs from trusted sources to ensure content safety.
+  </Card>
+  
+  <Card title="Secure credentials" icon="lock">
+    OpenComic encrypts stored passwords, but use unique passwords for each catalog.
+  </Card>
+  
+  <Card title="Manage downloads" icon="hard-drive">
+    Monitor disk space usage as downloads accumulate.
+  </Card>
+  
+  <Card title="Browse before downloading" icon="eye">
+    Disable auto-download to preview metadata before committing to download.
+  </Card>
+</CardGroup>
+
+## Troubleshooting
+
+### Cannot connect to catalog
+
+1. Verify the URL is correct and accessible
+2. Check internet connection
+3. Confirm credentials if authentication is required
+4. Try accessing the URL in a web browser
+
+### Invalid response errors
+
+- The catalog may be temporarily unavailable
+- The OPDS feed format may be unsupported
+- Check for server status messages
+
+### Missing images or metadata
+
+- Some catalogs provide limited metadata
+- Images may require authentication
+- Network issues may prevent image loading
+
+### Download failures
+
+1. Check available disk space
+2. Verify download folder permissions
+3. Ensure stable internet connection
+4. Try manual download if auto-download fails
+
+---
+
+<Card title="Next: Tracking integration" icon="chart-line" href="/advanced/tracking-integration">
+  Sync your reading progress with AniList and MyAnimeList
+</Card>

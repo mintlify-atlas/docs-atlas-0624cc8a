@@ -1,0 +1,244 @@
+---
+title: Library management
+description: Organize your comics with master folders, labels, favorites, and advanced filtering options
+---
+
+OpenComic provides powerful organization tools to manage large comic collections. Whether you have hundreds or thousands of comics, these features help you keep everything organized and easily accessible.
+
+## Master folders
+
+Master folders are the foundation of your library organization. They define the main locations where your comics are stored.
+
+### Adding master folders
+
+1. Open the settings panel
+2. Navigate to the Master Folders section
+3. Click "Add Folder" to select a directory
+4. The folder and all its subfolders are now part of your library
+
+<Note>
+OpenComic automatically scans master folders to detect comics. Files are indexed in the background, so large collections may take a moment to fully populate.
+</Note>
+
+### Master folder features
+
+- **Recursive scanning** - Automatically includes all subfolders
+- **Multiple folders** - Add as many master folders as needed
+- **Server support** - Can include network locations and remote servers
+- **Individual settings** - Each master folder can have custom sort and view preferences
+- **Label support** - Apply labels to entire master folders
+
+### Removing master folders
+
+Removing a master folder from the list doesn't delete any files - it simply stops tracking that location in your library.
+
+## Favorites
+
+Mark comics as favorites to quickly access your most-loved titles.
+
+### How favorites work
+
+- Click the heart icon on any comic to add it to favorites
+- Access all favorites from the sidebar navigation
+- Favorites persist across application restarts
+- Each favorite tracks when it was added
+- Works with individual files and folders
+
+<Tip>
+Use favorites for comics you're currently reading or series you return to frequently.
+</Tip>
+
+### Favorite features
+
+```javascript
+favorites: {
+  wildcard: {
+    added: 0,  // Timestamp when added to favorites
+  }
+}
+```
+
+- **Quick access** - Dedicated favorites section in sidebar
+- **Sorting options** - Sort by date added, name, or last read
+- **Filtering** - Can be combined with labels and other filters
+- **Tracking integration** - Favorites can be prioritized for auto-tracking prompts
+
+## Labels
+
+Labels provide a flexible tagging system for organizing comics beyond simple folders.
+
+### Creating labels
+
+1. Open the settings or right-click a comic
+2. Select "Labels"
+3. Create a new label with a custom name
+4. Assign the label to comics
+
+### Label features
+
+- **Multiple labels per comic** - Apply as many labels as needed
+- **Custom names** - Create descriptive labels like "To Read", "Completed", "Ongoing"
+- **Color coding** - Visual differentiation in the interface
+- **Bulk operations** - Apply labels to multiple comics at once
+- **Smart filtering** - View all comics with a specific label
+
+<Accordion title="Label use cases">
+
+**Organization by status**
+- "Reading" - Currently in progress
+- "Completed" - Finished series
+- "To Read" - Backlog queue
+- "Dropped" - Discontinued reading
+
+**Organization by genre**
+- "Action"
+- "Romance"
+- "Science Fiction"
+- "Fantasy"
+
+**Organization by publisher**
+- "Marvel"
+- "DC"
+- "Image Comics"
+- "Manga"
+
+</Accordion>
+
+### Label storage
+
+```javascript
+labels: [
+  '',  // Label names
+],
+comicLabels: {
+  wildcard: [
+    '',  // Labels assigned to this comic path
+  ],
+}
+```
+
+## Sorting and filtering
+
+OpenComic offers comprehensive sorting and filtering options to find comics quickly.
+
+### Sort options
+
+- **Name** - Alphabetical order (A-Z or Z-A)
+- **Date Added** - When added to library
+- **Last Read** - Most recently opened
+- **Progress** - Reading progress percentage
+- **Natural sorting** - Intelligent number handling (e.g., "Volume 2" before "Volume 10")
+
+### Filter options
+
+- **By label** - Show only comics with specific labels
+- **By favorite status** - Show only favorited comics
+- **By master folder** - Filter by storage location
+- **By server** - For network/remote comics
+- **By reading status** - Unread, in progress, completed
+- **Search** - Text search across comic names and paths
+
+### View preferences
+
+Each view context (master folder, label, favorites) remembers:
+
+- Sort order preference
+- View type (grid or list)
+- Filter selections
+- Thumbnail size
+
+These preferences persist between sessions, so your library always appears how you like it.
+
+## Library views
+
+OpenComic provides multiple views for browsing your collection:
+
+### Grid view
+
+- **Thumbnail display** - Visual browsing with cover images
+- **Adjustable size** - Configure thumbnail dimensions
+- **Smart poster detection** - Automatically finds cover images
+- **Metadata overlay** - Shows reading progress and labels
+
+### List view
+
+- **Compact display** - More items visible at once
+- **Detailed information** - Shows file info and progress
+- **Fast scrolling** - Optimized for large collections
+- **Quick actions** - Easy access to context menu options
+
+## Recently opened
+
+OpenComic automatically tracks recently opened comics:
+
+- Appears in the sidebar for quick access
+- Shows last opened timestamp
+- Limited to most recent items
+- Cleared manually when desired
+
+## Search functionality
+
+Quickly find comics in your library:
+
+- **Full-text search** - Searches comic names and file paths
+- **Recently searched** - Quick access to previous searches
+- **Real-time results** - Results update as you type
+- **Search across all locations** - Searches master folders, favorites, and labels
+
+<Tip>
+Recently searched terms are saved, allowing you to quickly re-run common searches without retyping.
+</Tip>
+
+## Advanced organization
+
+### Reading shortcuts
+
+Configure keyboard shortcuts and tap zones that automatically apply specific settings based on labels:
+
+```javascript
+labels: [
+  '',  // Label name to trigger special settings
+]
+```
+
+When opening a comic with a specific label, OpenComic can automatically:
+
+- Apply reading mode (manga, webtoon, etc.)
+- Set double page preferences
+- Configure zoom and margins
+- Enable specific filters
+
+### Ignore single folders
+
+When enabled, OpenComic automatically navigates into folders containing only one subfolder, streamlining navigation for organized collections like:
+
+```
+Series Name/
+  └── Volume 1/
+      └── [comic files]
+```
+
+### Files in subfolders
+
+Control whether comics in subfolders appear in the main library view or only when browsing into specific directories.
+
+## Server integration
+
+OpenComic can integrate remote storage locations into your library:
+
+- **SMB/CIFS** - Windows network shares
+- **FTP/FTPS** - File Transfer Protocol
+- **SFTP/SSH** - Secure File Transfer
+- **WebDAV** - Web-based file access
+- **S3** - Amazon S3 compatible storage
+
+Remote comics appear in your library alongside local files, with:
+
+- Automatic caching for offline reading
+- Progress syncing
+- Label and favorite support
+- Optional library display
+
+<Note>
+Server connections are configured in settings and can be added to the library navigation or accessed separately.
+</Note>

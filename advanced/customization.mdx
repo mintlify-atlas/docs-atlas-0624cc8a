@@ -1,0 +1,665 @@
+---
+title: Customization
+description: Customize OpenComic's appearance, keyboard shortcuts, tap zones, and image filters to match your reading preferences
+---
+
+OpenComic is highly customizable, allowing you to tailor the reading experience to your preferences. Customize themes, keyboard shortcuts, tap zones, visual filters, and more.
+
+## Themes and appearance
+
+OpenComic uses Material Design with multiple color themes.
+
+### Color themes
+
+Choose from a variety of color palettes:
+
+<CardGroup cols={3}>
+  <Card title="Blue" icon="droplet">
+    Classic blue theme (default)
+  </Card>
+  <Card title="Red" icon="droplet">
+    Vibrant red theme
+  </Card>
+  <Card title="Pink" icon="droplet">
+    Pink theme
+  </Card>
+  <Card title="Purple" icon="droplet">
+    Purple theme
+  </Card>
+  <Card title="Deep Purple" icon="droplet">
+    Deep purple theme
+  </Card>
+  <Card title="Indigo" icon="droplet">
+    Indigo theme
+  </Card>
+  <Card title="Light Blue" icon="droplet">
+    Light blue theme
+  </Card>
+  <Card title="Cyan" icon="droplet">
+    Cyan theme
+  </Card>
+  <Card title="Teal" icon="droplet">
+    Teal theme
+  </Card>
+  <Card title="Green" icon="droplet">
+    Green theme
+  </Card>
+  <Card title="Light Green" icon="droplet">
+    Light green theme
+  </Card>
+  <Card title="Lime" icon="droplet">
+    Lime theme
+  </Card>
+  <Card title="Yellow" icon="droplet">
+    Yellow theme
+  </Card>
+  <Card title="Amber" icon="droplet">
+    Amber theme
+  </Card>
+  <Card title="Orange" icon="droplet">
+    Orange theme
+  </Card>
+  <Card title="Deep Orange" icon="droplet">
+    Deep orange theme
+  </Card>
+  <Card title="Brown" icon="droplet">
+    Brown theme
+  </Card>
+  <Card title="Gray" icon="droplet">
+    Neutral gray theme
+  </Card>
+  <Card title="Blue Gray" icon="droplet">
+    Blue gray theme
+  </Card>
+</CardGroup>
+
+### Changing themes
+
+<Steps>
+  <Step title="Open theme settings">
+    Navigate to Settings → Theme or click the theme icon in the sidebar.
+  </Step>
+  
+  <Step title="Select color">
+    Choose your preferred color theme from the palette.
+  </Step>
+  
+  <Step title="Apply instantly">
+    Theme changes apply immediately throughout the app.
+  </Step>
+</Steps>
+
+### Light and dark modes
+
+Each theme supports both light and dark variants:
+
+- **Light mode**: Bright backgrounds, dark text
+- **Dark mode**: Dark backgrounds, light text (better for night reading)
+- **System mode**: Automatically matches your OS theme preference
+
+<Tabs>
+  <Tab title="Manual toggle">
+    Click the moon/sun icon to toggle between light and dark modes.
+  </Tab>
+  
+  <Tab title="System preference">
+    Enable "System night mode" in settings to automatically follow your OS theme.
+    
+    ```javascript
+    config.systemNightMode = true
+    ```
+  </Tab>
+</Tabs>
+
+### Theme customization
+
+OpenComic's Material Design themes include:
+
+- **Primary colors**: Main accent colors throughout the interface
+- **Secondary colors**: Supporting colors for highlights
+- **Surface colors**: Background and card surfaces
+- **Surface tinting**: Subtle color overlays on surfaces
+- **Proper contrast**: Ensures text readability in all modes
+
+## Keyboard shortcuts
+
+Customize keyboard shortcuts for every action in OpenComic.
+
+### Shortcut sections
+
+Shortcuts are organized by context:
+
+<Tabs>
+  <Tab title="Browse">
+    Library and folder browsing shortcuts:
+    
+    - Reload library (F5)
+    - Search (Ctrl+F)
+    - Search with filter (Ctrl+G)
+    - Previous chapter
+    - Next chapter
+    - Go back (Mouse3)
+    - Go forward (Mouse4)
+  </Tab>
+  
+  <Tab title="Reading">
+    Comic reader shortcuts:
+    
+    **Navigation:**
+    - Previous page (Left arrow, A)
+    - Next page (Right arrow, D)
+    - First page (Home)
+    - Last page (End)
+    - Previous comic
+    - Next comic
+    
+    **View controls:**
+    - Toggle fullscreen (F11)
+    - Hide header bar
+    - Hide sidebar
+    - Magnifying glass (Ctrl+M)
+    - Create bookmark (B)
+    
+    **Page layout:**
+    - Page layout menu (L)
+    - Slide mode
+    - Scroll mode
+    - Rough page turn
+    - Smooth page turn
+    - Fade transition
+    - Toggle manga mode (M)
+    - Toggle webtoon mode (W)
+    - Toggle double page (D)
+    - Adjust to width
+    - Rotate pages
+    
+    **Zoom:**
+    - Zoom in (+, =)
+    - Zoom out (-)
+    - Pan up (W)
+    - Pan down (S)
+    - Pan left (A)
+    - Pan right (D)
+    - Reset zoom (R)
+    
+    **Image:**
+    - Save current image
+    - Save all images
+    - Copy image
+    - Save bookmark images
+    
+    **Ebook:**
+    - Increase font size
+    - Decrease font size
+    - Change ebook layout
+    
+    **Other:**
+    - Context menu (right-click, C)
+    - Gamepad menu
+  </Tab>
+  
+  <Tab title="OPDS">
+    OPDS catalog shortcuts:
+    
+    - Reload (F5)
+    - Search catalog (Ctrl+F)
+    - Go back (Mouse3)
+    - Go forward (Mouse4)
+  </Tab>
+</Tabs>
+
+### Customizing shortcuts
+
+<Steps>
+  <Step title="Open shortcuts settings">
+    Navigate to Settings → Shortcuts.
+  </Step>
+  
+  <Step title="Select section">
+    Choose Browse, Reading, or OPDS shortcuts.
+  </Step>
+  
+  <Step title="Find action">
+    Locate the action you want to customize.
+  </Step>
+  
+  <Step title="Record new shortcut">
+    Click the shortcut field and press your desired key combination.
+    
+    Supported keys:
+    - Letters: A-Z
+    - Numbers: 0-9
+    - Function keys: F1-F12
+    - Arrows: ArrowUp, ArrowDown, ArrowLeft, ArrowRight
+    - Modifiers: Ctrl, Alt, Shift, Meta (Cmd on Mac)
+    - Mouse: Mouse3 (back), Mouse4 (forward)
+    - Special: Space, Enter, Escape, Tab, etc.
+  </Step>
+  
+  <Step title="Save">
+    Shortcuts save automatically and take effect immediately.
+  </Step>
+</Steps>
+
+### Shortcut format
+
+```javascript
+// Single key
+"F5"
+
+// With modifier
+"Ctrl+F"
+"Alt+Shift+D"
+
+// Mouse buttons
+"Mouse3"  // Back button
+"Mouse4"  // Forward button
+
+// Special combinations
+"Ctrl+Shift+ArrowLeft"
+```
+
+### Manga mode inversion
+
+In manga mode (right-to-left reading), certain shortcuts automatically invert:
+
+- **ArrowRight** ↔ **ArrowLeft**
+- **KeyD** ↔ **KeyA**
+
+This ensures natural navigation in manga mode.
+
+<Note>
+  Enable "Invert tap zones in manga" to also flip tap zone directions in manga mode.
+</Note>
+
+## Tap zones
+
+Tap zones let you navigate by clicking different areas of the screen.
+
+### Zone grid
+
+The reading area is divided into a 3×3 grid:
+
+```
+┌──────────┬──────────┬──────────┐
+│  Top     │  Top     │  Top     │
+│  Left    │  Center  │  Right   │
+├──────────┼──────────┼──────────┤
+│  Center  │  Center  │  Center  │
+│  Left    │  Center  │  Right   │
+├──────────┼──────────┼──────────┤
+│  Bottom  │  Bottom  │  Bottom  │
+│  Left    │  Center  │  Right   │
+└──────────┴──────────┴──────────┘
+```
+
+Each zone can trigger a different action.
+
+### Click types
+
+- **Left click**: Primary navigation
+- **Right click**: Context menu or custom action
+- **Middle click**: Custom action
+
+### Default tap zone configuration
+
+<Tabs>
+  <Tab title="Standard reading">
+    Default left-to-right configuration:
+    
+    | Zone | Left Click | Right Click |
+    |------|------------|-------------|
+    | Left side | Previous page | Context menu |
+    | Center | Toggle UI | Context menu |
+    | Right side | Next page | Context menu |
+    | Top | Previous page | Context menu |
+    | Bottom | Next page | Context menu |
+  </Tab>
+  
+  <Tab title="Manga mode">
+    When reading manga (if invert enabled):
+    
+    | Zone | Left Click | Right Click |
+    |------|------------|-------------|
+    | Left side | Next page | Context menu |
+    | Center | Toggle UI | Context menu |
+    | Right side | Previous page | Context menu |
+    | Top | Next page | Context menu |
+    | Bottom | Previous page | Context menu |
+  </Tab>
+</Tabs>
+
+### Customizing tap zones
+
+<Steps>
+  <Step title="Open shortcuts settings">
+    Navigate to Settings → Shortcuts → Tap Zones.
+  </Step>
+  
+  <Step title="Select zone">
+    Choose a position on the 3×3 grid.
+  </Step>
+  
+  <Step title="Choose click type">
+    Select left, right, or middle click.
+  </Step>
+  
+  <Step title="Assign action">
+    Pick an action from the available options:
+    
+    - Next page / Previous page
+    - First page / Last page
+    - Next comic / Previous comic
+    - Toggle UI
+    - Fullscreen
+    - Magnifying glass
+    - Create bookmark
+    - Context menu
+    - Custom shortcuts
+  </Step>
+</Steps>
+
+### Disabling tap zones
+
+If you prefer not to use tap zones:
+
+```javascript
+config.disableTapZones = true
+```
+
+This prevents accidental actions when clicking on images.
+
+## Mouse wheel actions
+
+Customize mouse wheel behavior:
+
+- **Scroll pages**: Wheel scrolls through pages
+- **Zoom**: Ctrl + wheel zooms in/out
+- **Pan**: Wheel pans when zoomed
+
+## Image filters and adjustments
+
+Apply visual filters to enhance or modify comic images.
+
+### Available filters
+
+<Tabs>
+  <Tab title="Brightness">
+    Adjust image brightness:
+    
+    - Range: -100% to +100%
+    - Default: 0% (no change)
+    - Useful for: Dark scans, night reading
+  </Tab>
+  
+  <Tab title="Contrast">
+    Modify image contrast:
+    
+    - Range: -100% to +100%
+    - Default: 0% (no change)
+    - Useful for: Faded scans, improving clarity
+  </Tab>
+  
+  <Tab title="Saturation">
+    Adjust color intensity:
+    
+    - Range: -100% to +100%
+    - Default: 0% (no change)
+    - -100% = grayscale
+    - Useful for: Oversaturated scans, creating black & white
+  </Tab>
+  
+  <Tab title="Sepia">
+    Apply sepia tone:
+    
+    - Range: 0% to 100%
+    - Default: 0% (no sepia)
+    - Useful for: Vintage look, reducing eye strain
+  </Tab>
+  
+  <Tab title="Invert colors">
+    Invert image colors:
+    
+    - Toggle on/off
+    - Useful for: Night reading, creating negative effect
+  </Tab>
+  
+  <Tab title="Negative">
+    Apply negative filter:
+    
+    - Similar to invert but preserves hue
+    - Useful for: Artistic effects
+  </Tab>
+</Tabs>
+
+### Advanced filters
+
+<AccordionGroup>
+  <Accordion title="Colorize black and white">
+    Apply color tinting to grayscale images:
+    
+    - Adds color tone to monochrome comics
+    - Customizable hue and intensity
+    - Preserves grayscale gradients
+  </Accordion>
+  
+  <Accordion title="Image sharpening">
+    Enhance edge definition:
+    
+    - Makes details more crisp
+    - Useful for: Soft or blurry scans
+    - Adjustable intensity
+  </Accordion>
+</AccordionGroup>
+
+### Applying filters
+
+<Steps>
+  <Step title="Open image settings">
+    While reading, open Settings → Image Adjustments.
+  </Step>
+  
+  <Step title="Adjust sliders">
+    Move sliders to adjust each filter:
+    
+    - Changes preview in real-time
+    - Combine multiple filters
+    - Fine-tune to your preference
+  </Step>
+  
+  <Step title="Save settings">
+    Filter settings save per comic or globally based on your preference.
+  </Step>
+</Steps>
+
+### Per-comic settings
+
+OpenComic can remember different settings for each comic:
+
+```javascript
+readingPagesConfig: {
+  brightness: 10,
+  contrast: 5,
+  saturation: -20,
+  sepia: 0,
+  invertColors: false
+}
+```
+
+Or apply globally to all comics.
+
+## Gamepad customization
+
+Customize gamepad button mappings for controller-based navigation.
+
+### Default gamepad controls
+
+<Tabs>
+  <Tab title="Browse">
+    - **X**: Reload
+    - **LB**: Previous chapter
+    - **RB**: Next chapter
+  </Tab>
+  
+  <Tab title="Reading">
+    - **A**: Next page
+    - **B**: Previous page
+    - **X**: Toggle fullscreen
+    - **Y**: Create bookmark
+    - **LB**: Previous chapter
+    - **RB**: Next chapter
+    - **LT**: Zoom out
+    - **RT**: Zoom in
+    - **D-pad**: Navigate UI/zoom pan
+    - **Start**: Menu
+    - **Select**: Context menu
+  </Tab>
+</Tabs>
+
+### Customizing gamepad
+
+<Steps>
+  <Step title="Connect gamepad">
+    Connect your game controller to your computer.
+  </Step>
+  
+  <Step title="Open gamepad settings">
+    Navigate to Settings → Shortcuts → Gamepad.
+  </Step>
+  
+  <Step title="Map buttons">
+    Assign actions to each button:
+    
+    - Face buttons: A, B, X, Y
+    - Shoulder buttons: LB, RB, LT, RT
+    - D-pad directions
+    - Analog sticks
+    - Start/Select/Menu buttons
+  </Step>
+</Steps>
+
+## Reading preferences
+
+### Page layout presets
+
+Save custom page layout configurations:
+
+- Single page
+- Double page
+- Webtoon/scroll
+- Custom combinations
+
+### Transition effects
+
+<CardGroup cols={3}>
+  <Card title="Slide" icon="arrow-right">
+    Pages slide horizontally or vertically
+  </Card>
+  <Card title="Scroll" icon="scroll">
+    Smooth continuous scrolling
+  </Card>
+  <Card title="Rough turn" icon="book">
+    Quick instant page changes
+  </Card>
+  <Card title="Smooth turn" icon="book-open">
+    Animated page transitions
+  </Card>
+  <Card title="Fade" icon="circle-half-stroke">
+    Fade between pages
+  </Card>
+</CardGroup>
+
+### Margin and spacing
+
+Customize page margins:
+
+- **Horizontal margins**: Space between double pages
+- **Vertical margins**: Top/bottom spacing
+- **Adjustable**: Increase/decrease with shortcuts
+
+## Advanced customization
+
+### Configuration file
+
+Advanced users can directly edit the configuration file:
+
+```json
+{
+  "theme": "material-design",
+  "themeColor": "blue",
+  "readingManga": false,
+  "readingWebtoon": false,
+  "readingDoublePage": false,
+  "readingImageInterpolationMethodUpscaling": "lanczos3",
+  "readingImageInterpolationMethodDownscaling": "lanczos3",
+  "readingAi": {
+    "upscale": {
+      "active": false,
+      "model": "realcugan",
+      "scale": 2,
+      "noise": 0,
+      "autoScale": true,
+      "maxMegapixels": 3.0
+    },
+    "descreen": {
+      "active": false,
+      "model": "opencomic-ai-descreen-hard-lite"
+    },
+    "artifactRemoval": {
+      "active": false,
+      "model": "opencomic-ai-artifact-removal-lite"
+    }
+  },
+  "disableTapZones": false,
+  "invertTapZonesInManga": true,
+  "systemNightMode": false
+}
+```
+
+### Per-page configuration
+
+Create different settings for different page types:
+
+```javascript
+readingPagesConfig: {
+  single: { /* settings for single pages */ },
+  double: { /* settings for double pages */ },
+  webtoon: { /* settings for webtoon scrolling */ }
+}
+
+readingShortcutPagesConfig: {
+  single: { /* specific shortcuts for single pages */ },
+  double: { /* specific shortcuts for double pages */ }
+}
+```
+
+## Reset to defaults
+
+If you want to reset customizations:
+
+<Steps>
+  <Step title="Open settings">
+    Navigate to Settings.
+  </Step>
+  
+  <Step title="Find reset option">
+    Look for "Reset to defaults" in the relevant section.
+  </Step>
+  
+  <Step title="Confirm reset">
+    Confirm you want to restore default settings.
+  </Step>
+</Steps>
+
+You can reset:
+- Individual shortcuts
+- All shortcuts in a section
+- Theme colors
+- Image filters
+- All settings (full reset)
+
+---
+
+<Card title="Explore more" icon="compass" href="/essentials">
+  Return to essentials for basic features and getting started
+</Card>

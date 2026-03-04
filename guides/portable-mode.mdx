@@ -1,0 +1,308 @@
+---
+title: Portable mode
+description: Run OpenComic as a portable application without installation
+---
+
+OpenComic offers portable versions that allow you to run the application without installation, making it perfect for USB drives, cloud storage, or systems where you don't have admin privileges.
+
+## What is portable mode?
+
+Portable mode means OpenComic runs as a self-contained application:
+
+- No installation required
+- All settings and data stored in the application folder
+- Can be run from USB drives or cloud storage
+- No registry entries or system modifications
+- Easy to backup and transfer between computers
+
+## Portable versions
+
+OpenComic offers two types of portable builds:
+
+<CardGroup cols={2}>
+  <Card title="Standard portable" icon="file-zipper">
+    Self-contained executable that stores data in the system's user directory. Easy to run but not fully portable.
+  </Card>
+  <Card title="Folder portable" icon="folder-tree">
+    Completely portable version that stores all data alongside the executable. True portability.
+  </Card>
+</CardGroup>
+
+## Downloading portable versions
+
+<Tabs>
+  <Tab title="Windows">
+    Download from the [releases page](https://github.com/ollm/OpenComic/releases):
+    
+    - `OpenComic.Portable.{version}.exe` - Standard portable
+    - `OpenComic.Folder.Portable.{version}.exe` - Folder portable (recommended)
+    - `OpenComic-Folder-Portable-{version}.7z` - Folder portable archive
+    
+    <Note>
+      The folder portable version is recommended for true portability.
+    </Note>
+  </Tab>
+
+  <Tab title="Linux">
+    Download from the [releases page](https://github.com/ollm/OpenComic/releases):
+    
+    - `opencomic-folder-portable-linux-{version}.7z` - Folder portable
+    - `OpenComic-{version}.AppImage` - Self-contained (also portable)
+    
+    <Note>
+      AppImage is automatically portable on Linux.
+    </Note>
+  </Tab>
+
+  <Tab title="macOS">
+    Download from the [releases page](https://github.com/ollm/OpenComic/releases):
+    
+    - `OpenComic-{version}.7z` - Archive containing portable app
+    
+    Extract and run from any location.
+  </Tab>
+</Tabs>
+
+## Setting up folder portable (Windows)
+
+<Steps>
+  <Step title="Download">
+    Download `OpenComic.Folder.Portable.{version}.exe` or the `.7z` archive from the releases page
+  </Step>
+  
+  <Step title="Extract (if using .7z)">
+    Extract the archive to your desired location:
+    - USB drive
+    - Cloud storage folder (Dropbox, OneDrive, etc.)
+    - External hard drive
+    - Local folder
+  </Step>
+  
+  <Step title="Run the executable">
+    Double-click `OpenComic.exe` to launch
+  </Step>
+  
+  <Step title="Verify portable mode">
+    Check that an `app-data` folder is created next to the executable. This confirms portable mode is active.
+  </Step>
+</Steps>
+
+## Setting up AppImage (Linux)
+
+<Steps>
+  <Step title="Download">
+    Download the `.AppImage` file for your architecture
+  </Step>
+  
+  <Step title="Make executable">
+    ```bash
+    chmod +x OpenComic-{version}.AppImage
+    ```
+  </Step>
+  
+  <Step title="Run">
+    ```bash
+    ./OpenComic-{version}.AppImage
+    ```
+    
+    Or double-click in your file manager
+  </Step>
+</Steps>
+
+<Note>
+  AppImage automatically stores settings in `~/.config/OpenComic`. To make it fully portable, use the folder portable Linux build.
+</Note>
+
+## Folder structure
+
+In folder portable mode, your directory structure looks like:
+
+```
+OpenComic/
+├── OpenComic.exe              # Main executable
+├── app-data/                  # Portable data folder
+│   ├── comics/                # Your comic library
+│   ├── config/                # Settings and preferences
+│   ├── thumbnails/            # Generated thumbnails
+│   └── reading-progress/      # Reading history
+├── resources/
+└── ...
+```
+
+<Warning>
+  Keep the entire folder together. Moving only the executable will break the portable configuration.
+</Warning>
+
+## Using portable mode from USB drive
+
+<Steps>
+  <Step title="Format USB drive">
+    Use exFAT or NTFS for compatibility across systems
+  </Step>
+  
+  <Step title="Copy OpenComic">
+    Extract the folder portable version to your USB drive
+  </Step>
+  
+  <Step title="Add comics">
+    Copy your comics to the USB drive (can be anywhere on the drive)
+  </Step>
+  
+  <Step title="Run on any computer">
+    Plug in the USB drive and run OpenComic.exe
+  </Step>
+  
+  <Step title="Add library paths">
+    Point OpenComic to your comics folder on the USB drive
+  </Step>
+</Steps>
+
+<Note>
+  USB drive letter may change between computers. Use relative paths when possible or reconfigure library paths on each system.
+</Note>
+
+## Cloud storage integration
+
+### Using portable mode with cloud sync
+
+Place OpenComic folder portable in cloud storage to sync settings across devices:
+
+<AccordionGroup>
+  <Accordion title="Dropbox">
+    1. Extract OpenComic to `Dropbox/Apps/OpenComic/`
+    2. Add library folders within Dropbox or use absolute paths
+    3. Launch from any synced computer
+    4. Settings and reading progress sync automatically
+  </Accordion>
+  
+  <Accordion title="OneDrive">
+    1. Extract OpenComic to your OneDrive folder
+    2. Configure library paths
+    3. Access from any device with OneDrive
+    4. Wait for sync to complete before closing app
+  </Accordion>
+  
+  <Accordion title="Google Drive">
+    1. Install Google Drive for Desktop
+    2. Extract OpenComic to Google Drive folder
+    3. Run from synced folder
+    4. Settings sync across devices
+  </Accordion>
+</AccordionGroup>
+
+<Warning>
+  Don't run multiple instances simultaneously from cloud storage - this can cause database conflicts. Close the app on one computer before opening on another.
+</Warning>
+
+## Advantages of portable mode
+
+<CardGroup cols={2}>
+  <Card title="No installation" icon="download">
+    Run immediately without admin privileges or installation
+  </Card>
+  
+  <Card title="Complete control" icon="gears">
+    All data in one folder - easy to backup and manage
+  </Card>
+  
+  <Card title="Multiple versions" icon="clone">
+    Run different versions side-by-side for testing
+  </Card>
+  
+  <Card title="Clean removal" icon="trash">
+    Delete folder to completely remove - no traces left
+  </Card>
+</CardGroup>
+
+## Limitations
+
+<AccordionGroup>
+  <Accordion title="File associations">
+    Portable versions don't register file associations. You'll need to manually open files with OpenComic or use the installed version for automatic file associations.
+  </Accordion>
+  
+  <Accordion title="Context menu integration">
+    Right-click "Open with" integration is not available in portable mode.
+  </Accordion>
+  
+  <Accordion title="Auto-updates">
+    Portable versions may not support automatic updates. Download new versions manually from the releases page.
+  </Accordion>
+  
+  <Accordion title="Performance on USB 2.0">
+    Running from slow USB drives may impact loading times for large comic files.
+  </Accordion>
+</AccordionGroup>
+
+## Migrating to/from installed version
+
+### From installed to portable
+
+<Steps>
+  <Step title="Locate data folder">
+    Installed version stores data in:
+    - Windows: `%APPDATA%/OpenComic`
+    - Linux: `~/.config/OpenComic`
+    - macOS: `~/Library/Application Support/OpenComic`
+  </Step>
+  
+  <Step title="Copy data">
+    Copy the entire data folder to the portable `app-data` folder
+  </Step>
+  
+  <Step title="Update library paths">
+    Open OpenComic portable and update library paths if needed
+  </Step>
+</Steps>
+
+### From portable to installed
+
+<Steps>
+  <Step title="Install OpenComic">
+    Run the installer for your platform
+  </Step>
+  
+  <Step title="Copy portable data">
+    Copy contents of portable `app-data` folder to the installed data location
+  </Step>
+  
+  <Step title="Verify">
+    Launch installed version and confirm your settings and library are intact
+  </Step>
+</Steps>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="App-data folder not created">
+    - Ensure you're using the folder portable version, not standard portable
+    - Check folder permissions - the app needs write access
+    - Try running as administrator (Windows)
+  </Accordion>
+  
+  <Accordion title="Comics not loading">
+    - Verify comic files are accessible from the current drive/location
+    - Check that library paths are correct for the current system
+    - Use relative paths when possible for better portability
+  </Accordion>
+  
+  <Accordion title="Settings not persisting">
+    - Confirm `app-data` folder exists next to executable
+    - Check write permissions on the folder
+    - Ensure antivirus isn't blocking file writes
+  </Accordion>
+  
+  <Accordion title="Slow performance on USB">
+    - Use USB 3.0 or faster drives
+    - Store comics locally, only settings on USB
+    - Consider using SSD-based external storage
+  </Accordion>
+</AccordionGroup>
+
+## Best practices
+
+1. **Backup regularly**: Portable mode makes backups easy - just copy the folder
+2. **Use relative paths**: When possible, store comics near the portable folder and use relative paths
+3. **Eject safely**: Always safely eject USB drives to prevent data corruption
+4. **Test on target systems**: Verify portability on actual target computers before relying on it
+5. **Keep it updated**: Manually download new versions to benefit from bug fixes and features

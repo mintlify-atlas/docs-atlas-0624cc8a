@@ -1,0 +1,213 @@
+---
+title: Gamepad navigation
+description: Use game controllers to navigate and read comics in OpenComic with full gamepad support
+---
+
+OpenComic includes comprehensive gamepad support, allowing you to navigate your library and read comics using any standard game controller (Xbox, PlayStation, etc.).
+
+## Getting started
+
+<Steps>
+  <Step title="Connect your gamepad">
+    Connect your controller via USB or Bluetooth before launching OpenComic
+  </Step>
+  <Step title="Automatic detection">
+    OpenComic automatically detects connected gamepads and enables gamepad navigation
+  </Step>
+  <Step title="Navigate the interface">
+    Use the D-pad or left stick to navigate through menus and your comic library
+  </Step>
+  <Step title="Start reading">
+    Press the A button to select and open comics
+  </Step>
+</Steps>
+
+<Note>
+  Gamepad input can be disabled in Settings → General → Input if needed.
+</Note>
+
+## Button mapping
+
+OpenComic uses Xbox-style button naming, but works with any standard controller:
+
+### Browse mode
+
+| Button | Action |
+| --- | --- |
+| **A** | Select/Confirm |
+| **B** | Go back |
+| **X** | Reload current view |
+| **Y** | Open context menu |
+| **LB** (Left bumper) | Previous chapter |
+| **RB** (Right bumper) | Next chapter |
+| **Menu/Start** | Open gamepad menu |
+| **Xbox button** | Open gamepad menu |
+| **D-pad** | Navigate interface |
+| **Left stick** | Navigate interface |
+
+### Reading mode
+
+<AccordionGroup>
+  <Accordion title="Basic controls">
+    | Button | Action |
+    | --- | --- |
+    | **A** | Create/delete bookmark |
+    | **B** | Go back / Close menu |
+    | **X** | Hide/show left sidebar |
+    | **Y** | Hide/show top bar |
+  </Accordion>
+
+  <Accordion title="Page navigation">
+    | Button | Action |
+    | --- | --- |
+    | **LB** (Left bumper) | Previous page |
+    | **RB** (Right bumper) | Next page |
+    | **D-pad Up** | First page |
+    | **D-pad Down** | Last page |
+    | **D-pad Left** | Previous page |
+    | **D-pad Right** | Next page |
+  </Accordion>
+
+  <Accordion title="Zoom and view controls">
+    | Button | Action |
+    | --- | --- |
+    | **LT** (Left trigger) | Zoom out |
+    | **RT** (Right trigger) | Zoom in |
+    | **L** (Left stick click) | Reset zoom |
+    | **R** (Right stick click) | Toggle fullscreen |
+    | **View/Back** | Magnifying glass |
+  </Accordion>
+
+  <Accordion title="Menu controls">
+    | Button | Action |
+    | --- | --- |
+    | **Menu/Start** | Open gamepad menu |
+    | **Xbox button** | Open gamepad menu |
+  </Accordion>
+</AccordionGroup>
+
+## Analog stick navigation
+
+### Left stick
+
+The left analog stick provides smooth navigation through menus and the comic library:
+
+- **Move stick**: Navigate in any direction
+- **Press (L button)**: Reset zoom in reading mode
+
+### Right stick
+
+The right stick can also be used for navigation:
+
+- **Move stick**: Navigate in any direction
+- **Press (R button)**: Toggle fullscreen in reading mode
+
+<Note>
+  Dead zone and sensitivity can be adjusted in Settings → Input → Gamepad to match your controller's characteristics.
+</Note>
+
+## Gamepad menu
+
+Press the **Menu/Start** or **Xbox** button to open the gamepad-specific quick menu, which provides easy access to:
+
+- View mode switching (list/grid)
+- Reading options
+- Page layout controls
+- Music controls (if available)
+- Quick navigation options
+
+## Settings and customization
+
+### Gamepad sensitivity
+
+Adjust how responsive the analog sticks are:
+
+1. Go to Settings → Input → Gamepad
+2. Adjust the "Sensitivity" slider (1-10)
+3. Higher values = more sensitive movement
+
+### Dead zone adjustment
+
+Prevent stick drift by adjusting the dead zone:
+
+1. Go to Settings → Input → Gamepad
+2. Adjust the "Dead zone" slider
+3. Increase if you experience unwanted movement when sticks are neutral
+
+### Custom button mapping
+
+You can customize gamepad buttons for different actions:
+
+<Steps>
+  <Step title="Open shortcuts settings">
+    Go to Settings → Shortcuts → Gamepad
+  </Step>
+  <Step title="Select action">
+    Choose the action you want to remap
+  </Step>
+  <Step title="Press button">
+    Press the gamepad button you want to assign
+  </Step>
+  <Step title="Confirm">
+    The new mapping is saved automatically
+  </Step>
+</Steps>
+
+### Disabling gamepad input
+
+If you want to temporarily disable gamepad input:
+
+1. Go to Settings → General → Input
+2. Toggle off "Enable gamepad input"
+3. Reconnect or restart the app to re-enable
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Gamepad not detected">
+    - Ensure the controller is connected before launching OpenComic
+    - Try reconnecting the controller
+    - Check if the controller works in other applications
+    - Restart OpenComic after connecting the controller
+  </Accordion>
+
+  <Accordion title="Buttons not responding">
+    - Check if gamepad input is enabled in Settings
+    - Try resetting button mappings to defaults
+    - Ensure no other application is capturing gamepad input
+  </Accordion>
+
+  <Accordion title="Stick drift or unwanted movement">
+    - Increase the dead zone setting in Settings → Gamepad
+    - Clean the controller's analog sticks
+    - Test the controller in other applications to rule out hardware issues
+  </Accordion>
+
+  <Accordion title="Navigation too fast or slow">
+    - Adjust sensitivity in Settings → Gamepad
+    - Lower sensitivity for more precise control
+    - Raise sensitivity for faster navigation
+  </Accordion>
+</AccordionGroup>
+
+## Controller compatibility
+
+OpenComic supports any standard gamepad that works with your operating system:
+
+- **Xbox controllers** (360, One, Series X/S)
+- **PlayStation controllers** (PS3, PS4, PS5)
+- **Nintendo Switch Pro Controller**
+- **Generic USB/Bluetooth gamepads**
+- **Steam Controller**
+
+<Warning>
+  Button labels use Xbox naming conventions, but the physical button positions work the same across all controllers.
+</Warning>
+
+## Keyboard + gamepad hybrid
+
+You can use keyboard and gamepad simultaneously:
+
+- Use gamepad for basic navigation and page turning
+- Use keyboard for advanced features and shortcuts
+- Both input methods work together seamlessly

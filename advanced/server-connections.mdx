@@ -1,0 +1,296 @@
+---
+title: Server connections
+description: Connect to remote servers and network storage using SMB, FTP, SFTP, S3, and WebDAV protocols
+---
+
+OpenComic supports reading comics directly from remote servers and network storage without downloading entire files first. This allows you to access large libraries stored on NAS devices, cloud storage, or remote servers.
+
+## Supported protocols
+
+OpenComic supports the following server protocols:
+
+<CardGroup cols={2}>
+  <Card title="SMB" icon="network-wired">
+    Windows file sharing protocol for network drives
+  </Card>
+  <Card title="FTP/FTPS" icon="server">
+    File Transfer Protocol with optional SSL/TLS security
+  </Card>
+  <Card title="SFTP/SSH/SCP" icon="lock">
+    Secure file transfer over SSH protocol
+  </Card>
+  <Card title="S3" icon="cloud">
+    Amazon S3 and S3-compatible object storage
+  </Card>
+  <Card title="WebDAV" icon="globe">
+    Web-based file access protocol (HTTP/HTTPS)
+  </Card>
+</CardGroup>
+
+## Protocol features
+
+| Protocol | Security | Progress tracking | Parallel downloads |
+|----------|----------|-------------------|--------------------|
+| SMB | Basic | Yes | Yes (5 concurrent) |
+| FTP | No | Yes | Sequential |
+| FTPS | Yes | Yes | Sequential |
+| SFTP/SSH | Yes | Yes | Yes (20 concurrent) |
+| SCP | Yes | Yes | Yes (20 concurrent) |
+| S3 | Yes | Yes | Yes (5 concurrent) |
+| WebDAV | No | Yes | Yes (5 concurrent) |
+| WebDAVS | Yes | Yes | Yes (5 concurrent) |
+
+## Adding a server connection
+
+<Steps>
+  <Step title="Open server settings">
+    Navigate to the server configuration section in OpenComic's settings.
+  </Step>
+  
+  <Step title="Configure connection details">
+    Enter the required information for your server:
+    
+    - **Protocol**: Choose from `smb://`, `ftp://`, `ftps://`, `sftp://`, `ssh://`, `scp://`, `s3://`, `webdav://`, or `webdavs://`
+    - **Host**: Server address or domain name
+    - **Port**: Custom port (optional)
+    - **Username**: Authentication username (if required)
+    - **Password**: Authentication password (if required)
+    - **Domain**: Windows domain for SMB (optional)
+    - **Share/Bucket**: Share name (SMB) or bucket name (S3)
+  </Step>
+  
+  <Step title="Test connection">
+    Verify that OpenComic can connect to your server successfully.
+  </Step>
+  
+  <Step title="Browse content">
+    Once connected, browse and read comics from your server just like local files.
+  </Step>
+</Steps>
+
+## Connection URL format
+
+Server paths follow these URL formats:
+
+```text
+// SMB (Windows/Samba)
+smb://server/share/path/to/comic.cbz
+smb://server:445/share/path/to/comic.cbz
+
+// FTP/FTPS
+ftp://server/path/to/comic.cbz
+ftps://server:990/path/to/comic.cbz
+
+// SFTP/SSH
+sftp://server/path/to/comic.cbz
+ssh://server:22/path/to/comic.cbz
+
+// SCP
+scp://server/path/to/comic.cbz
+
+// S3
+s3://region/bucket/path/to/comic.cbz
+s3://endpoint.com/bucket/path/to/comic.cbz
+
+// WebDAV
+webdav://server/path/to/comic.cbz
+webdavs://server:443/path/to/comic.cbz
+```
+
+## SMB connections
+
+Server Message Block (SMB) is commonly used for Windows network shares and NAS devices.
+
+### Configuration
+
+- **Default port**: 445
+- **Domain**: Workgroup or Active Directory domain (defaults to `WORKGROUP`)
+- **Authentication**: Username and password
+
+### Example
+
+```text
+smb://192.168.1.100/Comics/Manga/series.cbz
+smb://nas.local:445/Media/Comics/series.cbr
+```
+
+<Note>
+  SMB connections require proper network discovery and file sharing enabled on the server.
+</Note>
+
+## FTP and FTPS
+
+File Transfer Protocol for accessing remote file servers.
+
+### Features
+
+- **FTP**: Standard unencrypted file transfer (port 21)
+- **FTPS**: FTP with SSL/TLS encryption (port 990)
+- **Timeout**: Configurable connection timeout (default: 5 seconds × server timeout multiplier)
+
+### Sequential downloads
+
+FTP connections download files sequentially to ensure reliable transfers.
+
+## SFTP, SSH, and SCP
+
+Secure file access over SSH protocol.
+
+### Configuration
+
+- **Default port**: 22
+- **Authentication**: Username and password
+- **Timeout**: 5 seconds × server timeout multiplier
+- **Keep-alive**: 15 minutes
+
+### Parallel transfers
+
+SSH-based protocols support up to 20 concurrent file downloads with progress tracking.
+
+<Warning>
+  SSH key authentication is not currently supported. Use password authentication.
+</Warning>
+
+## S3 and compatible storage
+
+Amazon S3 and S3-compatible object storage services.
+
+### Configuration
+
+- **Region or endpoint**: AWS region (e.g., `us-east-1`) or custom endpoint URL
+- **Bucket**: S3 bucket name
+- **Credentials**: Access Key ID and Secret Access Key
+
+### Custom endpoints
+
+For S3-compatible services like MinIO, Wasabi, or DigitalOcean Spaces:
+
+```text
+s3://s3.wasabisys.com/bucket/comics/series.cbz
+s3://nyc3.digitaloceanspaces.com/bucket/manga.cbr
+```
+
+### Features
+
+- Path-style bucket access
+- Automatic pagination for large directories (up to 10,000 files)
+- Streaming downloads
+
+## WebDAV and WebDAVS
+
+Web Distributed Authoring and Versioning for HTTP-based file access.
+
+### Features
+
+- **WebDAV**: HTTP-based access (port 80)
+- **WebDAVS**: HTTPS-based secure access (port 443)
+- **Auto-detection**: Automatic authentication method detection
+
+### Common services
+
+WebDAV is supported by:
+- Nextcloud
+- ownCloud
+- Box
+- Other cloud storage services
+
+## Performance and caching
+
+### Intelligent caching
+
+OpenComic caches file listings and comic metadata to improve performance:
+
+- **File listings**: Cached with timestamps for quick navigation
+- **Comic pages**: Downloaded on-demand and cached locally
+- **Progress tracking**: Monitors download progress for each file
+
+### Connection management
+
+- **Auto-close**: Idle connections close after 10 minutes
+- **Error handling**: Automatic retry on connection errors
+- **Offline mode**: Option to work offline with cached content
+
+### Duplicate prevention
+
+OpenComic prevents downloading the same file multiple times:
+- Checks modification times
+- Skips already-downloaded files
+- Coordinates concurrent download requests
+
+## Error handling
+
+<AccordionGroup>
+  <Accordion title="Connection errors">
+    If you see connection errors:
+    
+    - Verify server address and port
+    - Check firewall settings
+    - Confirm credentials are correct
+    - Test network connectivity
+  </Accordion>
+  
+  <Accordion title="Folder not found">
+    If folders cannot be accessed:
+    
+    - Verify the path exists on the server
+    - Check folder permissions
+    - Ensure proper authentication
+  </Accordion>
+  
+  <Accordion title="Timeout errors">
+    For timeout issues:
+    
+    - Increase server timeout multiplier in settings
+    - Check network stability
+    - Verify server is responding
+  </Accordion>
+</AccordionGroup>
+
+## Best practices
+
+<CardGroup cols={2}>
+  <Card title="Use secure protocols" icon="shield-check">
+    Prefer FTPS, SFTP, S3, or WebDAVS over unencrypted options when possible.
+  </Card>
+  
+  <Card title="Optimize network" icon="gauge-high">
+    Use wired connections for best performance when streaming large comic files.
+  </Card>
+  
+  <Card title="Cache strategically" icon="database">
+    Allow OpenComic to cache frequently accessed comics for faster loading.
+  </Card>
+  
+  <Card title="Monitor bandwidth" icon="chart-line">
+    Be aware of data usage when accessing comics over the internet.
+  </Card>
+</CardGroup>
+
+## Troubleshooting
+
+### Connection refused
+
+If OpenComic cannot connect:
+
+1. Verify the server is online and accessible
+2. Check if the port is open and not blocked by a firewall
+3. Confirm the protocol is enabled on the server
+
+### Authentication failed
+
+1. Double-check username and password
+2. Verify domain name for SMB connections
+3. Ensure the account has proper permissions
+
+### Slow performance
+
+1. Check network speed and latency
+2. Reduce concurrent downloads if needed
+3. Enable local caching
+4. Consider increasing server timeout multiplier
+
+---
+
+<Card title="Next: OPDS catalogs" icon="book" href="/advanced/opds-catalogs">
+  Learn how to connect to OPDS comic and manga catalogs
+</Card>

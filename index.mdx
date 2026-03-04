@@ -1,97 +1,256 @@
 ---
-title: "Introduction"
-description: "Welcome to the new home for your documentation"
+title: "Welcome to OpenComic"
+description: "A powerful, feature-rich comic and manga reader for desktop"
+mode: "custom"
 ---
 
-## Setting up
+<div className="relative overflow-hidden bg-gradient-to-br from-[#cf4337] via-[#d94a3d] to-[#cf4337] dark:from-[#1a1d27] dark:via-[#242838] dark:to-[#1a1d27] py-20">
+  <div className="max-w-6xl mx-auto px-6">
+    <div className="grid lg:grid-cols-12 gap-12 items-center">
+      <div className="lg:col-span-7">
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white dark:text-gray-100 mb-6">
+          The ultimate comic and manga reader
+        </h1>
+        <p className="text-lg sm:text-xl text-white/90 dark:text-gray-300 mb-8 max-w-2xl">
+          Experience your favorite comics and manga with advanced reading modes, cloud storage integration, and AI-powered image enhancement — all in one beautiful desktop application.
+        </p>
+        <div className="flex flex-wrap gap-4">
+          <a 
+            href="/quickstart" 
+            className="inline-flex items-center px-6 py-3 bg-white dark:bg-[#242838] text-[#cf4337] dark:text-gray-100 font-semibold rounded-lg hover:bg-gray-100 dark:hover:bg-[#2a2f42] transition-colors no-underline"
+          >
+            Get Started
+          </a>
+          <a 
+            href="/installation" 
+            className="inline-flex items-center px-6 py-3 border border-white/30 dark:border-gray-600 bg-white/10 dark:bg-white/5 text-white dark:text-gray-100 font-semibold rounded-lg hover:bg-white/20 dark:hover:bg-white/10 transition-colors no-underline"
+          >
+            Download OpenComic
+          </a>
+        </div>
+      </div>
+      <div className="lg:col-span-5 hidden lg:block">
+        <div className="relative">
+          <img 
+            src="https://media.brand.dev/02628b28-7d1e-4010-93b7-7f1ae12fab1e.png" 
+            alt="OpenComic Logo" 
+            noZoom
+            className="w-full h-auto max-w-md mx-auto drop-shadow-2xl"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-Get your documentation site up and running in minutes.
+<div className="mt-16 mb-16 max-w-5xl mx-auto px-6">
+  <h2 className="text-2xl sm:text-3xl font-semibold text-gray-900 dark:text-white mb-4">
+    Get started in minutes
+  </h2>
+  <p className="text-base text-gray-600 dark:text-gray-400 mb-8">
+    Follow these simple steps to start reading your comics and manga with OpenComic.
+  </p>
 
-<Card
-  title="Start here"
-  icon="rocket"
-  href="/quickstart"
-  horizontal
->
-  Follow our three step quickstart guide.
-</Card>
+  <Steps>
+    <Step title="Download and install">
+      Download OpenComic for your platform (Windows, macOS, or Linux) and run the installer. Available in multiple formats including portable versions.
+    </Step>
+    <Step title="Add your library">
+      Open OpenComic and add your comic folders as master folders. You can also connect to cloud storage services like SMB, FTP, SFTP, S3, or WebDAV.
+    </Step>
+    <Step title="Start reading">
+      Browse your library, choose a comic or manga, and start reading. Use keyboard shortcuts, gamepad, or mouse to navigate through pages.
+    </Step>
+    <Step title="Customize your experience">
+      Configure reading modes (manga, webtoon, double page), apply image filters, set up tracking with AniList or MyAnimeList, and explore AI image enhancement features.
+    </Step>
+  </Steps>
+</div>
 
-## Make it yours
+<div className="mt-16 mb-16 max-w-5xl mx-auto px-6">
+  <h2 className="text-2xl sm:text-3xl font-semibold text-gray-900 dark:text-white mb-4">
+    Explore by feature
+  </h2>
+  <p className="text-base text-gray-600 dark:text-gray-400 mb-8">
+    Discover everything OpenComic has to offer.
+  </p>
 
-Design a docs site that looks great and empowers your users.
-
-<Columns cols={2}>
-  <Card
-    title="Edit locally"
-    icon="pen-to-square"
-    href="/development"
-  >
-    Edit your docs locally and preview them in real time.
-  </Card>
-  <Card
-    title="Customize your site"
-    icon="palette"
-    href="/essentials/settings"
-  >
-    Customize the design and colors of your site to match your brand.
-  </Card>
+  <CardGroup cols={3}>
     <Card
-    title="Set up navigation"
-    icon="map"
-    href="/essentials/navigation"
-  >
-    Organize your docs to help users find what they need and succeed with your product.
-  </Card>
-  <Card
-    title="API documentation"
-    icon="terminal"
-    href="/api-reference/introduction"
-  >
-    Auto-generate API documentation from OpenAPI specifications.
-  </Card>
-</Columns>
+      title="File formats"
+      icon="file-zipper"
+      href="/features/file-formats"
+    >
+      Support for CBZ, CBR, CB7, PDF, EPUB, and 15+ image formats
+    </Card>
+    <Card
+      title="Reading modes"
+      icon="book-open"
+      href="/features/reading-modes"
+    >
+      Manga, webtoon, double page, and customizable reading experiences
+    </Card>
+    <Card
+      title="Library management"
+      icon="folder-tree"
+      href="/features/library-management"
+    >
+      Organize with master folders, labels, and smart bookmarks
+    </Card>
+    <Card
+      title="Cloud storage"
+      icon="cloud"
+      href="/advanced/server-connections"
+    >
+      Connect to SMB, FTP, SFTP, S3, WebDAV, and more
+    </Card>
+    <Card
+      title="AI enhancement"
+      icon="wand-magic-sparkles"
+      href="/advanced/ai-image-enhancement"
+    >
+      Upscale, descreen, and remove artifacts with AI tools
+    </Card>
+    <Card
+      title="Tracking"
+      icon="chart-line"
+      href="/advanced/tracking-integration"
+    >
+      Sync reading progress with AniList and MyAnimeList
+    </Card>
+  </CardGroup>
+</div>
 
-## Create beautiful pages
+<div className="mt-16 mb-16 max-w-5xl mx-auto px-6">
+  <h2 className="text-2xl sm:text-3xl font-semibold text-gray-900 dark:text-white mb-4">
+    Powerful features
+  </h2>
+  <p className="text-base text-gray-600 dark:text-gray-400 mb-8">
+    Everything you need for the perfect reading experience.
+  </p>
 
-Everything you need to create world-class documentation.
+  <div className="grid md:grid-cols-2 gap-6">
+    <div className="p-6 rounded-lg border border-gray-200 dark:border-[#27272a] bg-gray-50 dark:bg-[#1a1d27]">
+      <div className="flex items-start gap-4">
+        <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-[#cf4337] dark:bg-[#cf4337]/20 flex items-center justify-center">
+          <span className="text-white dark:text-[#cf4337] text-xl">📚</span>
+        </div>
+        <div>
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+            Universal format support
+          </h3>
+          <p className="text-sm text-gray-600 dark:text-gray-400">
+            Read comics in any format — from compressed archives (CBZ, CBR, CB7) to PDFs and EPUBs. Support for 15+ image formats including modern formats like AVIF, JXL, and HEIC.
+          </p>
+        </div>
+      </div>
+    </div>
 
-<Columns cols={2}>
-  <Card
-    title="Write with MDX"
-    icon="pen-fancy"
-    href="/essentials/markdown"
-  >
-    Use MDX to style your docs pages.
-  </Card>
-  <Card
-    title="Code samples"
-    icon="code"
-    href="/essentials/code"
-  >
-    Add sample code to demonstrate how to use your product.
-  </Card>
-  <Card
-    title="Images"
-    icon="image"
-    href="/essentials/images"
-  >
-    Display images and other media.
-  </Card>
-  <Card
-    title="Reusable snippets"
-    icon="recycle"
-    href="/essentials/reusable-snippets"
-  >
-    Write once and reuse across your docs.
-  </Card>
-</Columns>
+    <div className="p-6 rounded-lg border border-gray-200 dark:border-[#27272a] bg-gray-50 dark:bg-[#1a1d27]">
+      <div className="flex items-start gap-4">
+        <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-[#cf4337] dark:bg-[#cf4337]/20 flex items-center justify-center">
+          <span className="text-white dark:text-[#cf4337] text-xl">🎨</span>
+        </div>
+        <div>
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+            Advanced image control
+          </h3>
+          <p className="text-sm text-gray-600 dark:text-gray-400">
+            Adjust brightness, saturation, contrast, and apply filters. Colorize black and white images. Use the floating magnifying glass for detailed viewing.
+          </p>
+        </div>
+      </div>
+    </div>
 
-## Need inspiration?
+    <div className="p-6 rounded-lg border border-gray-200 dark:border-[#27272a] bg-gray-50 dark:bg-[#1a1d27]">
+      <div className="flex items-start gap-4">
+        <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-[#cf4337] dark:bg-[#cf4337]/20 flex items-center justify-center">
+          <span className="text-white dark:text-[#cf4337] text-xl">🎮</span>
+        </div>
+        <div>
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+            Multiple input methods
+          </h3>
+          <p className="text-sm text-gray-600 dark:text-gray-400">
+            Navigate with keyboard shortcuts, gamepad, mouse, or custom tap zones. Fully customizable controls to match your reading style.
+          </p>
+        </div>
+      </div>
+    </div>
 
-<Card
-  title="See complete examples"
-  icon="stars"
-  href="https://mintlify.com/customers"
->
-  Browse our showcase of exceptional documentation sites.
-</Card>
+    <div className="p-6 rounded-lg border border-gray-200 dark:border-[#27272a] bg-gray-50 dark:bg-[#1a1d27]">
+      <div className="flex items-start gap-4">
+        <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-[#cf4337] dark:bg-[#cf4337]/20 flex items-center justify-center">
+          <span className="text-white dark:text-[#cf4337] text-xl">☁️</span>
+        </div>
+        <div>
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+            Cloud integration
+          </h3>
+          <p className="text-sm text-gray-600 dark:text-gray-400">
+            Access your comics from network shares, FTP servers, S3 buckets, or WebDAV services. Full support for OPDS catalogs.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div className="mt-16 mb-16 max-w-5xl mx-auto px-6">
+  <h2 className="text-2xl sm:text-3xl font-semibold text-gray-900 dark:text-white mb-4">
+    Popular guides
+  </h2>
+  <p className="text-base text-gray-600 dark:text-gray-400 mb-8">
+    Learn how to get the most out of OpenComic.
+  </p>
+
+  <CardGroup cols={2}>
+    <Card
+      title="Keyboard shortcuts"
+      icon="keyboard"
+      href="/guides/keyboard-shortcuts"
+    >
+      Master OpenComic with keyboard shortcuts for faster navigation
+    </Card>
+    <Card
+      title="Building from source"
+      icon="code"
+      href="/guides/building-from-source"
+    >
+      Build and customize OpenComic for your specific needs
+    </Card>
+    <Card
+      title="Portable mode"
+      icon="suitcase"
+      href="/guides/portable-mode"
+    >
+      Run OpenComic from a USB drive or portable installation
+    </Card>
+    <Card
+      title="Troubleshooting"
+      icon="wrench"
+      href="/guides/troubleshooting"
+    >
+      Common issues and solutions to keep your reading smooth
+    </Card>
+  </CardGroup>
+</div>
+
+<div className="mt-20 mb-16 max-w-5xl mx-auto px-6">
+  <div className="rounded-2xl border border-gray-200 dark:border-[#27272a] bg-gradient-to-br from-gray-50 to-white dark:from-[#1a1d27] dark:to-[#242838] p-8 sm:p-12">
+    <div className="max-w-3xl">
+      <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">
+        Ready to start reading?
+      </h2>
+      <p className="text-base text-gray-600 dark:text-gray-400 mb-6">
+        Download OpenComic today and experience comics and manga the way they were meant to be enjoyed. Free and open source.
+      </p>
+      <a 
+        href="/installation" 
+        className="inline-flex items-center px-6 py-3 bg-[#cf4337] text-white font-semibold rounded-lg hover:bg-[#b83a2f] transition-colors no-underline"
+      >
+        Download OpenComic
+      </a>
+    </div>
+  </div>
+</div>

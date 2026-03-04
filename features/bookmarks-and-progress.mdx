@@ -1,0 +1,291 @@
+---
+title: Bookmarks and progress tracking
+description: Save your reading position with bookmarks and automatic progress tracking across your entire library
+---
+
+OpenComic automatically tracks your reading progress and allows you to save specific bookmarks for important pages. Never lose your place in a series again.
+
+## Reading progress
+
+OpenComic continuously tracks where you are in every comic you read.
+
+### What is tracked
+
+For each comic, OpenComic stores:
+
+```javascript
+readingProgress: {
+  index: 0,            // Current page index
+  path: 'Path',        // Exact file path being read
+  lastReading: 0,      // Timestamp of last read session
+  ebook: false,        // Whether this is an ebook (PDF/EPUB)
+  progress: 0,         // Overall progress (0-1)
+  chapterIndex: 0,     // For ebooks: current chapter
+  chapterProgress: 0,  // For ebooks: position within chapter
+  // Visible progress indicators
+  page: 0,            // Current page number
+  pages: 0,           // Total pages
+  percent: 0,         // Percentage complete
+  completed: false,   // Whether comic is finished
+}
+```
+
+### How progress tracking works
+
+1. **Automatic saving** - Progress saves automatically as you read
+2. **Page-level accuracy** - Tracks exact page position
+3. **Multi-format support** - Works with images, PDFs, and EPUBs
+4. **Double-page aware** - Correctly handles double-page spreads
+5. **Cross-session persistence** - Resumes where you left off
+
+<Note>
+Progress is saved automatically at regular intervals and when closing a comic. You don't need to manually save your position.
+</Note>
+
+### Continue reading
+
+When you open a comic you've previously read:
+
+- OpenComic automatically jumps to your last position
+- A subtle indicator shows your progress in the library view
+- You can manually navigate to any page without losing progress
+- Progress updates as you read forward or backward
+
+### Progress indicators
+
+Your reading progress appears in multiple locations:
+
+- **Library thumbnails** - Progress bar overlay
+- **Recently opened list** - Percentage complete
+- **Reading interface** - Current page / total pages
+- **Bookmarks panel** - Progress for bookmarked comics
+
+## Bookmarks
+
+Bookmarks let you mark specific pages for quick reference, separate from your current reading position.
+
+### Creating bookmarks
+
+Mark any page as a bookmark:
+
+1. Navigate to the page you want to bookmark
+2. Click the bookmark button in the header
+3. The bookmark is saved instantly
+
+<Tip>
+Use keyboard shortcuts to quickly add bookmarks without interrupting your reading flow.
+</Tip>
+
+### Bookmark features
+
+```javascript
+bookmarks: {
+  wildcard: [{
+    index: 0,           // Page number bookmarked
+    path: 'Path',       // File path within comic
+    ebook: false,       // Whether from ebook
+    progress: 0,        // Reading progress at bookmark
+    chapterIndex: 0,    // Chapter (for ebooks)
+    chapterProgress: 0, // Position in chapter (for ebooks)
+  }]
+}
+```
+
+Each bookmark stores:
+
+- **Exact page location** - Precise page index
+- **File path** - For nested files and archives
+- **Thumbnail** - Visual reference of the bookmarked page
+- **Context** - Chapter information for ebooks
+- **Timestamp** - When the bookmark was created
+
+### Bookmark management
+
+Access and manage your bookmarks through the collections panel:
+
+- **List view** - All bookmarks organized by comic
+- **Thumbnail preview** - See what page you bookmarked
+- **Quick navigation** - Click to jump directly to bookmarked page
+- **Deletion** - Remove bookmarks you no longer need
+- **Sorting** - Organized by comic and page order
+
+<Accordion title="Bookmark use cases">
+
+**Reference pages**
+Mark important plot points, character introductions, or reference panels
+
+**Multiple reading positions**
+Bookmark different locations to switch between story arcs or compare pages
+
+**Favorite moments**
+Save memorable scenes or artwork you want to revisit
+
+**Research and analysis**
+Mark pages for later review when studying storytelling techniques
+
+</Accordion>
+
+### Bookmark navigation
+
+When viewing bookmarks:
+
+1. **Thumbnail display** - Visual preview of each bookmark
+2. **Grouped by comic** - Bookmarks organized by source
+3. **Page numbers** - Clear indication of bookmark location
+4. **One-click access** - Instantly jump to any bookmark
+5. **Current position indicator** - Shows which comic you're currently reading
+
+## Ebook-specific features
+
+For PDF and EPUB files, progress tracking includes additional features:
+
+### Chapter progress
+
+- **Chapter index** - Which chapter you're in
+- **Chapter progress** - Position within current chapter (0-1)
+- **Table of contents integration** - Jump to chapters from TOC
+- **Resume accuracy** - Returns to exact position within chapter
+
+### Progress persistence
+
+When you set a bookmark or close an ebook:
+
+```javascript
+{
+  chapterIndex: 2,        // Chapter 2
+  chapterProgress: 0.45,  // 45% through chapter
+}
+```
+
+Reopening the ebook:
+1. Finds the correct chapter page
+2. Calculates position within chapter
+3. Jumps to the closest page match
+4. Maintains reading flow
+
+## Progress synchronization
+
+Progress data is stored locally but can be synchronized:
+
+- **Cross-instance updates** - Changes reflect across open windows
+- **Storage events** - Automatic sync when changes occur
+- **Conflict resolution** - Most recent progress takes precedence
+- **Data integrity** - Progress saves are atomic and safe
+
+## Recently opened
+
+OpenComic maintains a list of recently opened comics:
+
+```javascript
+recentlyOpened: {
+  wildcard: {
+    path: '',        // Comic path
+    lastOpened: 0,   // Timestamp
+  },
+}
+```
+
+This powers:
+
+- **Quick access sidebar** - Recent comics list
+- **Jump back in** - Continue recently started series
+- **Reading history** - Track your reading patterns
+- **Smart sorting** - Most recent items first
+
+<Note>
+Recently opened items show your current progress, making it easy to continue where you left off.
+</Note>
+
+## Continue reading features
+
+OpenComic makes it effortless to continue reading:
+
+### Automatic resume
+
+- Opens to your last page automatically
+- Works with any view mode
+- Preserves zoom and position
+- Handles double-page mode correctly
+
+### Progress visibility
+
+- **Library indicators** - See progress before opening
+- **Percentage complete** - Quick status overview
+- **Page counters** - "Page 45 of 150"
+- **Completion status** - Mark series as completed
+
+### Smart navigation
+
+- **Skip to unread** - Jump past completed sections
+- **Chapter progress** - Navigate by chapter in ebooks
+- **Bookmark integration** - Quick access to bookmarked pages
+- **Series navigation** - Continue to next volume when finished
+
+## Tracking integration
+
+Progress tracking integrates with external tracking services:
+
+- **AniList** - Sync manga reading progress
+- **MyAnimeList** - Update reading status
+- **Auto-tracking** - Optionally update when reaching the end
+- **Completion detection** - Automatically marks series complete
+
+<Tip>
+Enable "Track at the end" in settings to automatically prompt tracking updates when you finish a chapter or volume.
+</Tip>
+
+## Data management
+
+Progress and bookmark data is:
+
+- **Stored locally** - In your OpenComic user data directory
+- **JSON format** - Easy to backup and migrate
+- **Cross-platform** - Works on Windows, macOS, and Linux
+- **Portable** - Can be moved with portable installations
+
+### Backup recommendations
+
+1. **Automatic backups** - Consider backing up your user data folder
+2. **Before updates** - Backup progress before major version updates
+3. **Multiple devices** - Manually sync data folders if reading on multiple computers
+4. **Export bookmarks** - Use the save bookmarks images feature for visual backups
+
+## Advanced features
+
+### Progress-based navigation
+
+Navigate based on completion status:
+
+- Filter to show only in-progress comics
+- Sort by reading progress
+- Highlight nearly-complete series
+- Show unread comics first
+
+### Bookmark images
+
+Save images of your bookmarked pages:
+
+1. Right-click in bookmarks panel
+2. Select "Save bookmarks images"
+3. Choose destination folder
+4. OpenComic exports all bookmarked pages
+
+<Note>
+This feature is only available for image-based comics (not PDFs/EPUBs) and creates copies of the bookmarked pages for offline reference.
+</Note>
+
+### Reading statistics
+
+OpenComic tracks:
+
+- Total pages read across all comics
+- Last access timestamp per comic
+- Completion status per series
+- Reading patterns over time
+
+This data helps you:
+
+- Rediscover comics you started but didn't finish
+- Track your reading habits
+- Prioritize your backlog
+- Celebrate your progress

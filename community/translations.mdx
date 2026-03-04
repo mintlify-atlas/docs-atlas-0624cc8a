@@ -1,0 +1,127 @@
+---
+title: Translations
+description: Help translate OpenComic into your language and make it accessible to users worldwide
+---
+
+If you want to see OpenComic in your language, please help us translate! OpenComic currently has translations into 22 languages.
+
+## Creating a new translation
+
+To create a new translation for OpenComic, follow these steps:
+
+<Steps>
+  <Step title="Get the empty template">
+    Start by downloading the [empty.json](https://github.com/ollm/OpenComic/blob/master/languages/empty.json) file from the repository.
+  </Step>
+  
+  <Step title="Compare with existing translations">
+    Compare your empty file to other translations (preferably [English](https://github.com/ollm/OpenComic/blob/master/languages/en.json) or [Spanish](https://github.com/ollm/OpenComic/blob/master/languages/es.json)) using a diff tool:
+    - [Meld](https://meld.app/)
+    - [WinMerge](https://winmerge.org/)
+    - [Mergely](https://editor.mergely.com/) (web-based)
+    - Or any other method you prefer
+  </Step>
+  
+  <Step title="Activate the language">
+    Edit the [`languagesList.json`](https://github.com/ollm/OpenComic/blob/master/languages/languagesList.json) file and add `"active": true` to your language. If the language is not in the list, you can add it.
+  </Step>
+  
+  <Step title="Submit your translation">
+    You can send a pull request or open an issue with:
+    - The new translated file
+    - The updated `languagesList.json`
+    
+    <Note>
+    It is not necessary that the translation is complete.
+    </Note>
+  </Step>
+</Steps>
+
+The list of translators appears in the `About OpenComic` window and in the TRANSLATE.md file.
+
+## Updating an existing translation
+
+To update an existing translation:
+
+<Steps>
+  <Step title="Get the current file">
+    Download the current translated file from the [languages folder](https://github.com/ollm/OpenComic/tree/master/languages).
+  </Step>
+  
+  <Step title="Find missing translations">
+    Compare it to another translation (preferably [English](https://github.com/ollm/OpenComic/blob/master/languages/en.json) or [Spanish](https://github.com/ollm/OpenComic/blob/master/languages/es.json)) using a diff tool, or search for empty strings `""` in the translation file.
+  </Step>
+  
+  <Step title="Add your name (optional)">
+    If you consider it appropriate, you can add your data to the list of translators in the file. This data appears in the `About OpenComic` window and in the TRANSLATE.md file.
+  </Step>
+  
+  <Step title="Submit your update">
+    Send a pull request or open an issue with the updated translated file.
+    
+    <Note>
+    It is not necessary that the translation is complete.
+    </Note>
+  </Step>
+</Steps>
+
+## Translation status
+
+OpenComic has translations into 22 languages with varying completion levels:
+
+<AccordionGroup>
+  <Accordion title="100% Complete (3 languages)">
+    - **Català** - 555/555 strings
+    - **English** - 555/555 strings
+    - **Español** - 555/555 strings
+  </Accordion>
+
+  <Accordion title="99%+ Complete (2 languages)">
+    - **فارسی (Persian)** - 554/555 strings (99.8%)
+    - **Українська (Ukrainian)** - 551/555 strings (99.3%)
+  </Accordion>
+
+  <Accordion title="90-99% Complete (6 languages)">
+    - **Français** - 550/555 strings (99.1%)
+    - **русский язык (Russian)** - 526/555 strings (94.8%)
+    - **中文（简体中文）** - 526/555 strings (94.8%)
+    - **Deutsch** - 518/555 strings (93.3%)
+    - **中文（繁體中文）** - 518/555 strings (93.3%)
+    - **polski** - 498/555 strings (89.7%)
+  </Accordion>
+
+  <Accordion title="80-90% Complete (5 languages)">
+    - **ไทย (Thai)** - 487/555 strings (87.7%)
+    - **Türkçe** - 487/555 strings (87.7%)
+    - **한국어 (Korean)** - 479/555 strings (86.3%)
+    - **日本語 (Japanese)** - 476/555 strings (85.8%)
+    - **العربية (Arabic)** - 475/555 strings (85.6%)
+    - **Português Brasileiro** - 469/555 strings (84.5%)
+  </Accordion>
+
+  <Accordion title="Below 80% (6 languages)">
+    - **Italiano** - 421/555 strings (75.9%)
+    - **svenska (Swedish)** - 301/555 strings (54.2%)
+    - **Tiếng Việt (Vietnamese)** - 297/555 strings (53.5%)
+    - **Čeština (Czech)** - 116/555 strings (20.9%)
+    - **Magyar (Hungarian)** - 102/555 strings (18.4%)
+  </Accordion>
+</AccordionGroup>
+
+## Contributing your translation
+
+You can contribute translations through:
+
+<CardGroup cols={2}>
+  <Card title="Pull Request" icon="code-pull-request" href="https://github.com/ollm/OpenComic/pulls">
+    Submit your translation directly via GitHub pull request
+  </Card>
+  
+  <Card title="GitHub Issue" icon="github" href="https://github.com/ollm/OpenComic/issues">
+    Open an issue with your translation files attached
+  </Card>
+</CardGroup>
+
+<Note>
+Incomplete translations are welcome! Every contribution helps make OpenComic more accessible.
+</Note>

@@ -1,0 +1,399 @@
+---
+title: Troubleshooting
+description: Solutions to common issues and problems in OpenComic
+---
+
+This guide covers solutions to common issues you might encounter while using OpenComic.
+
+## Installation and startup issues
+
+<AccordionGroup>
+  <Accordion title="Application won't start">
+    **Windows:**
+    - Run as administrator
+    - Check Windows SmartScreen isn't blocking the app
+    - Install Visual C++ Redistributables
+    - Disable antivirus temporarily to test
+    
+    **macOS:**
+    - Right-click and select "Open" to bypass Gatekeeper on first launch
+    - Check System Preferences → Security & Privacy for blocked apps
+    - For non-notarized builds, run: `xattr -cr /Applications/OpenComic.app`
+    
+    **Linux:**
+    - Ensure executable permissions: `chmod +x OpenComic.AppImage`
+    - Install required dependencies (see below)
+    - Check if running from a filesystem that supports execution
+  </Accordion>
+
+  <Accordion title="Missing dependencies (Linux)">
+    Install required libraries:
+    
+    **Debian/Ubuntu:**
+    ```bash
+    sudo apt-get install libgtk-3-0 libnotify4 libnss3 libxss1 \
+      libxtst6 xdg-utils libatspi2.0-0 libdrm2 libgbm1 libxcb-dri3-0
+    ```
+    
+    **Fedora/RHEL:**
+    ```bash
+    sudo dnf install gtk3 libnotify nss libXScrnSaver libXtst xdg-utils \
+      at-spi2-core libdrm mesa-libgbm libxcb
+    ```
+    
+    **Arch:**
+    ```bash
+    sudo pacman -S gtk3 libnotify nss libxss libxtst xdg-utils \
+      at-spi2-core libdrm mesa libxcb
+    ```
+  </Accordion>
+
+  <Accordion title="App crashes on startup">
+    1. Delete configuration folder:
+       - Windows: `%APPDATA%/OpenComic`
+       - Linux: `~/.config/OpenComic`
+       - macOS: `~/Library/Application Support/OpenComic`
+    2. Restart OpenComic
+    3. If issue persists, check console for error messages
+    4. Report the issue with logs on GitHub
+  </Accordion>
+
+  <Accordion title="'Failed to load' or blank white screen">
+    - Update graphics drivers
+    - Disable hardware acceleration in Settings
+    - Try running with `--disable-gpu` flag:
+      ```bash
+      # Windows
+      OpenComic.exe --disable-gpu
+      
+      # Linux
+      ./OpenComic.AppImage --disable-gpu
+      ```
+  </Accordion>
+</AccordionGroup>
+
+## Comic loading issues
+
+<AccordionGroup>
+  <Accordion title="Comics not showing in library">
+    1. Verify the folder is added to library paths in Settings
+    2. Check file formats are supported (CBZ, CBR, CB7, PDF, EPUB, etc.)
+    3. Ensure files aren't corrupted - test opening them manually
+    4. Try refreshing the library (F5)
+    5. Check file permissions - OpenComic needs read access
+  </Accordion>
+
+  <Accordion title="Can't open CBR/RAR files">
+    CBR files require RAR extraction support:
+    
+    - OpenComic includes 7zip-bin which supports most RAR files
+    - Ensure RAR5 encrypted archives are using supported encryption
+    - For password-protected archives, enter password when prompted
+    - Try re-packaging as CBZ if issues persist
+  </Accordion>
+
+  <Accordion title="PDF files not loading">
+    - Update to the latest OpenComic version
+    - Check if PDF is encrypted or password-protected
+    - Large PDFs may take time to load - wait for processing
+    - Corrupted PDFs won't load - verify file integrity
+  </Accordion>
+
+  <Accordion title="EPUB files not displaying correctly">
+    <Warning>
+      EPUB support is in alpha stage and may have issues.
+    </Warning>
+    
+    - EPUB support is experimental
+    - Complex layouts may not render perfectly
+    - Fixed-layout EPUBs work better than reflowable
+    - Consider converting to PDF for better compatibility
+  </Accordion>
+
+  <Accordion title="Images not displaying or appearing corrupted">
+    - Check image format is supported
+    - Update OpenComic to latest version for new format support
+    - File may be corrupted - test extraction manually
+    - Try changing image interpolation method in Settings
+    - Disable AI upscaling if enabled
+  </Accordion>
+</AccordionGroup>
+
+## Performance issues
+
+<AccordionGroup>
+  <Accordion title="Slow page loading">
+    **Possible solutions:**
+    
+    1. Adjust cache settings in Settings → Performance
+    2. Disable image enhancements (AI upscaling, colorization)
+    3. Change interpolation method to faster option (nearest)
+    4. Reduce preview quality
+    5. Close other resource-intensive applications
+    6. For large archives, extract first before reading
+  </Accordion>
+
+  <Accordion title="High memory usage">
+    - Reduce image cache size in Settings
+    - Disable page preloading
+    - Close other applications
+    - Restart OpenComic periodically
+    - Check for memory leaks (report if found)
+  </Accordion>
+
+  <Accordion title="Application freezing or lagging">
+    - Disable hardware acceleration
+    - Reduce animation effects
+    - Lower image quality settings
+    - Check system resources (CPU, RAM, disk)
+    - Update graphics drivers
+    - Disable background music if playing
+  </Accordion>
+
+  <Accordion title="Thumbnails not generating">
+    - Check thumbnail cache folder has write permissions
+    - Clear thumbnail cache and regenerate
+    - Increase thumbnail generation timeout in Settings
+    - For remote libraries (FTP, SMB), ensure stable connection
+  </Accordion>
+</AccordionGroup>
+
+## Display and rendering issues
+
+<AccordionGroup>
+  <Accordion title="Pages appearing blurry">
+    - Change interpolation method to higher quality (lanczos3)
+    - Disable "not enlarge more than original size" option
+    - Check if source images are low resolution
+    - Enable AI upscaling for better quality (slower)
+  </Accordion>
+
+  <Accordion title="Wrong page orientation">
+    - Use rotation shortcuts: `Ctrl+R` (all pages) or `Shift+R` (horizontals)
+    - Check auto-rotation settings
+    - Manually rotate in page layout menu
+  </Accordion>
+
+  <Accordion title="Double page view issues">
+    - Enable "Do not apply to horizontals" for mixed layouts
+    - Adjust blank page settings if pages are misaligned
+    - Some comics need manual single/double page configuration
+  </Accordion>
+
+  <Accordion title="Colors look wrong">
+    - Reset color adjustments in reading menu
+    - Check brightness, saturation, contrast sliders
+    - Disable sepia, negative, or invert colors filters
+    - Disable colorization if applied to B&W images
+  </Accordion>
+
+  <Accordion title="Manga mode not working correctly">
+    - Verify manga mode is enabled (`Ctrl+M`)
+    - Check "Invert tap zones in manga" setting
+    - Reading direction should be right-to-left
+    - Arrow keys automatically invert in manga mode
+  </Accordion>
+</AccordionGroup>
+
+## Remote server connections
+
+<AccordionGroup>
+  <Accordion title="Can't connect to FTP/SFTP server">
+    - Verify server address, port, username, and password
+    - Test connection with a dedicated FTP client first
+    - Check firewall settings on both client and server
+    - Ensure server supports the protocol (FTP, FTPS, SFTP)
+    - For SFTP, verify SSH keys if using key authentication
+  </Accordion>
+
+  <Accordion title="Can't connect to SMB/network share">
+    - Use format: `smb://server/share/path`
+    - Provide credentials when prompted
+    - Test access through file explorer first
+    - Check network connectivity
+    - Ensure SMB/CIFS is enabled on server
+    - On Windows, use UNC path: `\\\\server\\share`
+  </Accordion>
+
+  <Accordion title="WebDAV connection issues">
+    - Verify URL format: `webdav://server/path` or `webdavs://` for HTTPS
+    - Check authentication credentials
+    - Test with WebDAV client first
+    - Verify server supports WebDAV protocol
+    - Check CORS settings if accessing from web
+  </Accordion>
+
+  <Accordion title="OPDS catalog not loading">
+    - Verify OPDS feed URL is correct
+    - Check if feed requires authentication
+    - Test feed URL in web browser
+    - Some OPDS servers may be slow - wait for timeout
+    - Check server is online and accessible
+  </Accordion>
+</AccordionGroup>
+
+## Input and controls
+
+<AccordionGroup>
+  <Accordion title="Keyboard shortcuts not working">
+    - Check if another application is capturing the keys
+    - Verify shortcuts in Settings → Shortcuts
+    - Try restoring default shortcuts
+    - Check if input field is focused (shortcuts disabled when typing)
+    - Some shortcuts may conflict with system shortcuts
+  </Accordion>
+
+  <Accordion title="Gamepad not detected">
+    - Connect gamepad before launching OpenComic
+    - Check if gamepad input is enabled in Settings
+    - Verify gamepad works in other applications
+    - Try reconnecting the gamepad
+    - Restart OpenComic
+  </Accordion>
+
+  <Accordion title="Mouse wheel not working for zoom">
+    - Check mouse wheel shortcuts in Settings
+    - Verify no modifier keys are stuck (Ctrl, Shift, Alt)
+    - Test in different reading modes
+    - Clear and reconfigure mouse shortcuts
+  </Accordion>
+
+  <Accordion title="Touch/trackpad gestures not working">
+    - Touch support varies by platform
+    - Try using mouse/keyboard shortcuts instead
+    - Check trackpad settings in system preferences
+    - Update trackpad drivers
+  </Accordion>
+</AccordionGroup>
+
+## Tracking and synchronization
+
+<AccordionGroup>
+  <Accordion title="AniList/MyAnimeList tracking not working">
+    - Verify you're logged in to the service
+    - Check API credentials in Settings
+    - Ensure comic metadata includes tracking ID
+    - Network issues can prevent sync - check connection
+    - Some comics may not be in the tracking database
+  </Accordion>
+
+  <Accordion title="Reading progress not saving">
+    - Check database file permissions
+    - Verify storage location is writable
+    - Database corruption - try deleting and recreating
+    - In portable mode, ensure app-data folder is writable
+  </Accordion>
+
+  <Accordion title="Bookmarks not persisting">
+    - Same as reading progress issues
+    - Export bookmarks as backup
+    - Check if running from read-only location
+  </Accordion>
+</AccordionGroup>
+
+## Audio issues
+
+<AccordionGroup>
+  <Accordion title="Background music not playing">
+    - Place music files in comic folder (MP3, OGG, etc.)
+    - Check if audio files are named correctly
+    - Verify audio isn't muted in app or system
+    - Check supported formats: MP3, M4A, OGG, OPUS, WAV, FLAC
+    - Try different audio format if one isn't working
+  </Accordion>
+
+  <Accordion title="Audio playback issues">
+    - Update audio codecs on your system
+    - Check file isn't corrupted
+    - Lower audio quality/bitrate
+    - Restart OpenComic
+  </Accordion>
+</AccordionGroup>
+
+## Miscellaneous issues
+
+<AccordionGroup>
+  <Accordion title="Settings not saving">
+    - Check config folder has write permissions
+    - Running from CD or read-only media won't save settings
+    - Use portable mode if on restricted system
+    - Antivirus may be blocking config writes
+  </Accordion>
+
+  <Accordion title="Magnifying glass not working">
+    - Press `M` key to toggle magnifying glass
+    - Click and drag to move it
+    - Adjust size and zoom in Settings
+    - Disable if causing performance issues
+  </Accordion>
+
+  <Accordion title="Discord Rich Presence not showing">
+    - Enable Discord Rich Presence in Settings
+    - Ensure Discord is running
+    - Restart both OpenComic and Discord
+    - Check Discord privacy settings allow activity status
+  </Accordion>
+
+  <Accordion title="AI features not working">
+    - AI upscaling requires compatible hardware
+    - Check AI model files are present
+    - May require additional GPU resources
+    - Disable if causing crashes or performance issues
+    - Update to latest OpenComic version
+  </Accordion>
+</AccordionGroup>
+
+## Getting help
+
+If your issue isn't covered here:
+
+<Steps>
+  <Step title="Check the documentation">
+    Review other guides and the README for additional information
+  </Step>
+  
+  <Step title="Search existing issues">
+    Check [GitHub Issues](https://github.com/ollm/OpenComic/issues) to see if others have reported similar problems
+  </Step>
+  
+  <Step title="Gather information">
+    - OpenComic version
+    - Operating system and version
+    - Steps to reproduce the issue
+    - Error messages or screenshots
+    - Console logs (if available)
+  </Step>
+  
+  <Step title="Report the issue">
+    Create a new issue on [GitHub](https://github.com/ollm/OpenComic/issues/new) with detailed information
+  </Step>
+</Steps>
+
+## Debug mode
+
+To enable debug logging for troubleshooting:
+
+**Windows:**
+```bash
+OpenComic.exe --debug
+```
+
+**Linux:**
+```bash
+./OpenComic.AppImage --debug
+```
+
+**macOS:**
+```bash
+/Applications/OpenComic.app/Contents/MacOS/OpenComic --debug
+```
+
+Logs will be output to the console and can help identify issues.
+
+## Common log locations
+
+- **Windows**: `%APPDATA%/OpenComic/logs`
+- **Linux**: `~/.config/OpenComic/logs`
+- **macOS**: `~/Library/Application Support/OpenComic/logs`
+
+Include relevant log entries when reporting issues.

@@ -1,0 +1,436 @@
+---
+title: Tracking integration
+description: Sync your manga and comic reading progress with AniList and MyAnimeList
+---
+
+OpenComic integrates with popular manga tracking services to automatically sync your reading progress. Track chapters and volumes read, mark series as completed, and maintain your manga list across devices.
+
+## Supported tracking services
+
+<CardGroup cols={2}>
+  <Card title="AniList" icon="list" href="https://anilist.co/">
+    Track, Discover, Share Anime & Manga
+    
+    - Chapter tracking
+    - Volume tracking
+    - Status management
+    - OAuth authentication
+  </Card>
+  
+  <Card title="MyAnimeList" icon="book-bookmark" href="https://myanimelist.net/">
+    Anime and manga Database and Community
+    
+    - Chapter tracking
+    - Volume tracking
+    - Reading status
+    - OAuth authentication
+  </Card>
+</CardGroup>
+
+## Features
+
+### Automatic tracking
+
+- **Chapter progress**: Automatically updates as you read
+- **Volume progress**: Tracks completed volumes
+- **Status updates**: Changes status to "Reading" or "Completed" automatically
+- **Manual override**: Option to disable auto-tracking per series
+
+### Search and link
+
+- **Search manga**: Find titles in tracking service database
+- **Smart matching**: Shows authors to help identify correct entry
+- **Cover images**: Visual confirmation of matched series
+- **Direct links**: Quick access to manga pages on tracking sites
+
+## Setting up tracking
+
+<Steps>
+  <Step title="Open tracking settings">
+    Navigate to the tracking section in OpenComic settings.
+  </Step>
+  
+  <Step title="Choose a tracking service">
+    Select AniList or MyAnimeList (or both).
+  </Step>
+  
+  <Step title="Authenticate">
+    Click the login button to connect your account:
+    
+    - Opens authentication page in your browser
+    - Grant OpenComic permission to access your list
+    - Automatically redirects back to OpenComic
+  </Step>
+  
+  <Step title="Mark as favorite" icon="star">
+    Optionally mark frequently used services as favorites for quick access.
+  </Step>
+</Steps>
+
+<Note>
+  OpenComic stores encrypted session tokens. You won't need to log in again unless you explicitly log out or tokens expire.
+</Note>
+
+## Linking manga to tracking services
+
+### From reading view
+
+<Steps>
+  <Step title="Open tracking menu">
+    While reading a manga, open the tracking menu from the toolbar or context menu.
+  </Step>
+  
+  <Step title="Search for manga">
+    Enter the manga title to search the tracking service database.
+  </Step>
+  
+  <Step title="Select correct entry">
+    Choose the matching entry from search results:
+    
+    - Verify by cover image
+    - Check author names
+    - Confirm title matches
+  </Step>
+  
+  <Step title="Enable tracking">
+    Activate tracking for this manga. OpenComic will now sync your progress automatically.
+  </Step>
+</Steps>
+
+### From file info
+
+You can also link manga from the file information dialog:
+
+1. Right-click manga in library
+2. Select "File information"
+3. Navigate to tracking tab
+4. Search and link to tracking service
+
+## AniList integration
+
+### Features
+
+AniList support includes:
+
+- **GraphQL API**: Efficient data queries
+- **OAuth 2.0**: Secure authentication with refresh tokens
+- **Chapter tracking**: Update chapters read
+- **Volume tracking**: Update volumes completed
+- **Status management**: Current, Completed, etc.
+- **Rich metadata**: Retrieve series information
+
+### Authentication flow
+
+```javascript
+// AniList OAuth endpoint
+https://anilist.co/api/v2/oauth/authorize
+  ?client_id={CLIENT_ID}
+  &redirect_uri=opencomic://tracking/anilist
+  &response_type=code
+```
+
+### Automatic updates
+
+When you read a manga linked to AniList:
+
+1. **Detects progress**: Reads current chapter/volume from filename
+2. **Compares with AniList**: Checks your current progress on AniList
+3. **Updates if higher**: Only updates if you've progressed further
+4. **Sets status**: Changes to "Reading" if not already set
+5. **Marks complete**: Automatically marks complete when you finish
+
+### Progress detection
+
+OpenComic extracts chapter and volume numbers from filenames:
+
+```text
+// Examples of recognized formats
+Manga Series - Vol. 01 Ch. 001.cbz
+Series Name - Volume 5 Chapter 42.cbr
+[Group] Manga Title - C015 (v03).zip
+```
+
+### Status values
+
+- `CURRENT`: Currently reading
+- `COMPLETED`: Finished reading
+- `PLANNING`: Plan to read
+- `DROPPED`: Stopped reading
+- `PAUSED`: On hold
+- `REPEATING`: Re-reading
+
+## MyAnimeList integration
+
+### Features
+
+MyAnimeList support includes:
+
+- **REST API**: v2 API endpoints
+- **OAuth 2.0**: PKCE authentication flow
+- **Chapter tracking**: Sync chapters read
+- **Volume tracking**: Sync volumes completed
+- **Status updates**: Reading status management
+- **Metadata**: Series information and covers
+
+### Authentication flow
+
+```javascript
+// MyAnimeList OAuth endpoint
+https://myanimelist.net/v1/oauth2/authorize
+  ?response_type=code
+  &client_id={CLIENT_ID}
+  &code_challenge={CHALLENGE}
+  &redirect_uri=opencomic://tracking/myanimelist
+```
+
+### PKCE security
+
+MyAnimeList uses PKCE (Proof Key for Code Exchange) for enhanced security:
+- Generates random challenge code
+- No client secret required
+- Protects against interception attacks
+
+### Status values
+
+- `reading`: Currently reading
+- `completed`: Finished reading
+- `plan_to_read`: Plan to read
+- `dropped`: Stopped reading  
+- `on_hold`: Paused
+
+## Search functionality
+
+### Search interface
+
+When searching for manga:
+
+<Steps>
+  <Step title="Enter title">
+    Type the manga title in the search box.
+  </Step>
+  
+  <Step title="Review results">
+    Browse search results showing:
+    
+    - Cover image
+    - Title (romaji for AniList)
+    - Authors/creators
+    - Series ID
+  </Step>
+  
+  <Step title="Select match">
+    Click the correct entry to link it.
+  </Step>
+</Steps>
+
+### Search optimization
+
+Search queries:
+- Return up to 10 results per page
+- Include author information for verification
+- Show cover images for visual confirmation
+- Filter by media type (manga)
+
+### Handling no results
+
+If search returns no results:
+
+1. **Try alternate titles**: Use Japanese, English, or romaji variants
+2. **Simplify query**: Remove subtitles or volume numbers
+3. **Search on website**: Manually find the ID and add it
+4. **Check spelling**: Verify title spelling
+
+## Progress synchronization
+
+### Automatic sync
+
+OpenComic syncs progress when:
+
+- You finish reading a chapter
+- You close a manga
+- Progress exceeds current tracking
+- App detects you've reached series end
+
+### Sync behavior
+
+<AccordionGroup>
+  <Accordion title="Increment only">
+    OpenComic only increases your progress, never decreases it. If you've already marked more progress on the tracking site, OpenComic won't override it.
+  </Accordion>
+  
+  <Accordion title="Smart completion">
+    When you reach the last chapter or volume (based on tracking site metadata), OpenComic automatically marks the series as completed.
+  </Accordion>
+  
+  <Accordion title="Manual correction">
+    You can always manually update progress on the tracking website if needed.
+  </Accordion>
+</AccordionGroup>
+
+### Conflict resolution
+
+If progress differs:
+
+1. Compares local progress with remote
+2. Uses higher value
+3. Updates tracking site if local is higher
+4. Never overwrites higher remote values
+
+## Managing tracking
+
+### View tracking status
+
+Check current tracking status:
+
+- Active tracking services
+- Linked manga ID
+- Current chapter/volume progress
+- Reading status
+- Total chapters/volumes (from tracking site)
+
+### Disable tracking
+
+<Steps>
+  <Step title="Open tracking settings">
+    For the manga, open tracking configuration.
+  </Step>
+  
+  <Step title="Disable auto-tracking">
+    Turn off "Auto prompt" or "Active" status.
+  </Step>
+  
+  <Step title="Unlink manga" icon="link-slash">
+    Optionally remove the link to stop all tracking for this manga.
+  </Step>
+</Steps>
+
+### Unlink manga
+
+To completely unlink a manga:
+
+1. Open manga tracking settings
+2. Click "Unlink" or remove ID
+3. Confirm unlinking
+
+This stops all progress tracking but doesn't affect data on the tracking website.
+
+## Session management
+
+### Token refresh
+
+Both services use refresh tokens:
+
+- **AniList**: Tokens refresh automatically before expiry
+- **MyAnimeList**: Refresh tokens used when access token expires
+- **Transparent**: Happens in the background
+
+### Session invalidation
+
+Sessions may become invalid if:
+
+- You change password on tracking site
+- You revoke OpenComic's access
+- Token expires and refresh fails
+
+<Warning>
+  If a session becomes invalid, you'll need to re-authenticate. OpenComic will prompt you automatically.
+</Warning>
+
+### Manual logout
+
+To disconnect a tracking service:
+
+1. Open tracking settings
+2. Select the service
+3. Click "Logout" or "Disconnect"
+4. Confirm logout
+
+This removes stored tokens but keeps manga links for easy re-authentication.
+
+## Privacy and security
+
+### Data storage
+
+<AccordionGroup>
+  <Accordion title="Encrypted credentials">
+    All authentication tokens are encrypted before storage using OpenComic's secure storage system.
+  </Accordion>
+  
+  <Accordion title="Local only">
+    Tracking links and progress data are stored only on your device. OpenComic doesn't sync this data through any external service.
+  </Accordion>
+  
+  <Accordion title="Minimal permissions">
+    OpenComic only requests permission to read and update your manga list. It cannot access other account data.
+  </Accordion>
+</AccordionGroup>
+
+### Secure authentication
+
+- **OAuth 2.0**: Industry-standard authentication
+- **No password storage**: Passwords never stored by OpenComic
+- **Token-based**: Uses secure, revocable access tokens
+- **PKCE for MAL**: Enhanced security for MyAnimeList
+
+## Metadata from tracking services
+
+Retrieve series information:
+
+- **Total chapters**: Know how many chapters exist
+- **Total volumes**: See total volume count
+- **Cover images**: High-quality series covers
+- **Titles**: Official romaji/English titles
+- **Current progress**: Your reading progress
+
+### Display in OpenComic
+
+Tracking metadata appears in:
+
+- File information dialog
+- Reading progress overlay
+- Library series information
+- Tracking status indicators
+
+## Troubleshooting
+
+### Cannot authenticate
+
+<Steps>
+  <Step title="Check browser">
+    Ensure the authentication page loads in your default browser.
+  </Step>
+  
+  <Step title="Allow redirect">
+    Browser must allow redirect back to `opencomic://` protocol.
+  </Step>
+  
+  <Step title="Try again">
+    If authentication fails, close browser and retry.
+  </Step>
+</Steps>
+
+### Progress not syncing
+
+1. **Verify linking**: Ensure manga is linked to tracking service
+2. **Check connection**: Confirm internet connectivity
+3. **Re-authenticate**: Session may have expired
+4. **Manual update**: Update progress on website to verify credentials
+
+### Wrong manga linked
+
+1. **Unlink**: Remove incorrect link
+2. **Search again**: Use more specific title
+3. **Verify**: Check authors and cover before confirming
+4. **Manual search**: Find correct ID on tracking website
+
+### Session expired
+
+<Note>
+  When you see "Session invalid" messages, simply re-authenticate through the tracking settings. Your manga links will be preserved.
+</Note>
+
+---
+
+<Card title="Next: AI image enhancement" icon="wand-magic-sparkles" href="/advanced/ai-image-enhancement">
+  Enhance your comics with AI-powered upscaling and filtering
+</Card>

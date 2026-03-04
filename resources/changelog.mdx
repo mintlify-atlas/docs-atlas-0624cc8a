@@ -1,0 +1,149 @@
+---
+title: Changelog
+description: Version history and release notes for OpenComic
+---
+
+All notable changes to OpenComic are documented here. The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## v1.7.0 (Upcoming)
+
+### New Features
+
+- Support for multiple instances (Open multiple OpenComic windows)
+- Add option to open files from outside OpenComic in a new window
+- Add setting to use a custom folder for cache and temporary files
+- AI image upscaling tool
+- AI image descreen tool
+- AI image artifact removal tool
+- Cache the folder's thumbnails/poster file lists to reduce disk I/O
+- Hide file extension by default
+- Support playing background music on a specific page
+- Options in OPDS to auto-download files from the catalog
+- Support for tabs
+- Option to extract document images (PDF and EPUB)
+
+### Bug Fixes
+
+- Adding or changing poster not working when the drive is different from the system drive
+- Hiding cursor in fullscreen mode fails in some cases
+- Save/Copy uses the image under the mouse cursor instead of the active page
+- Error saving the progress of the final page in epub files
+- Prevent crash when retrieving metadata with Sharp for many large images (Linux only)
+- Extract files when the file in it starts with the '-' character
+- Use reading sort for thumbnail/poster generation
+- Improve drag scrolling (Ignore right-click and add activation dead zone)
+
+## [v1.6.5](https://github.com/ollm/OpenComic/releases/tag/v1.6.5) (October 31, 2025)
+
+### New Features
+
+- Go prev/next chapter with auto-scroll (Moving the cursor in the middle of the screen)
+
+### Bug Fixes
+
+- Cancelling prev/next chapter breaks the magnifier tool
+- Downgrade Electron to 37.8.0 to fix font rendering issues on Linux
+
+## [v1.6.4](https://github.com/ollm/OpenComic/releases/tag/v1.6.4) (October 11, 2025)
+
+### Bug Fixes
+
+- Downgrade Electron to 38.0.0 to resolve Linux release freezes on Wayland
+
+## [v1.6.3](https://github.com/ollm/OpenComic/releases/tag/v1.6.3) (October 7, 2025)
+
+### Bug Fixes
+
+- Add error handling for reading progress in comic context menu
+- Error handling for corrupted JSON/ZSTD files in cache and remove them
+- Header bar buttons don't register start/end of chapter if scrolled with scrollbar
+- Asynchronous progress check in the context menu (Mark as read/unread)
+- The application loops and freezes when opening files on the network (UNC paths)
+- Prevent concurrent reads of the same file
+- Memory leak in blob files when browsing extremely quickly while reading
+- TypeError by ensuring countries is an array
+- High memory usage on Linux due to a compatibility issue between Sharp and Electron
+- Incorrect page is being set as a poster in manga mode
+- Image breaks sometimes in PDF render
+
+## [v1.6.2](https://github.com/ollm/OpenComic/releases/tag/v1.6.2) (September 8, 2025)
+
+### New Features
+
+- Option to change labels from app bar
+- Context menu in continue reading bar
+- Support multi-layer folder labeling in servers
+
+### Bug Fixes
+
+- Prevent app freeze when relative path receives undefined value
+- Error on start directly in last reading
+
+## [v1.6.1](https://github.com/ollm/OpenComic/releases/tag/v1.6.1) (August 26, 2025)
+
+### New Features
+
+- Extract tracking chapter/volume also from image names
+- Tracking also by current page/image chapter/volume
+- Pick at random button
+- Separate order of browsing and reading
+- Sort option to list compressed files first, separated from folders
+- Auto-prompt to track
+- Improve relative path support for folder portable
+
+### Bug Fixes
+
+- Show page number doesn't work properly on scroll reading
+- Some tap zones events not working
+- Thumbnails and progress missing when filtering current page
+- Rare cases of blank images during reading
+- Show magnifying glass instantaneous when enabled from shortcuts
+- goBack not working if OpenComic starts directly on reading
+- Error on migrating some config
+- Server connections do not work in some cases on Windows
+- Some compressed files wouldn't open from the servers
+
+## [v1.6.0](https://github.com/ollm/OpenComic/releases/tag/v1.6.0) (July 27, 2025)
+
+### New Features
+
+- Allow disabling "Do not enlarge more than its original size" in Webtoon mode
+- Improved rotation and support for rotating in PDF
+- PDFs are rendered to a blob image instead of a canvas
+- Optimized sidebar thumbnails
+- Support Discord Rich Presence
+- Get Calibre series and series_index metadata in PDF and ePub
+- Increase and decrease horizontal margin shortcuts
+- Use single thread in HDD extractions
+- Auto-hide mouse cursor in fullscreen mode
+- Show progress bar, pages and percentage in library/browsing
+- Progressive thumbnail/progress generation based on scroll position
+- Option to mark as read and unread
+- Option to show page number in the top right-hand corner
+- Add support for labels in master folders (auto config only)
+- Option to show shadow effect between pages in double page mode
+
+### Bug Fixes
+
+- Error opening files from the system file explorer
+- Invert tap zones in manga reading
+- Error opening an OPDS Catalog
+- Correct support Komga OPDS server
+- Some mime types are not correct detected
+- Update electron to fix white lines in Webtoon mode
+- Navigation back not working with shortcuts and gamepad
+- Correct invert some shortcuts in manga reading
+- Optimized poster handling in file image retrieval
+- Do not use the ignore pattern when searching for poster/images
+
+## Earlier Versions
+
+For the complete version history, visit the [full changelog on GitHub](https://github.com/ollm/OpenComic/blob/master/CHANGELOG.md).
+
+<Card
+  title="View on GitHub"
+  icon="github"
+  href="https://github.com/ollm/OpenComic/blob/master/CHANGELOG.md"
+>
+  See the complete changelog with all versions and commit references
+</Card>

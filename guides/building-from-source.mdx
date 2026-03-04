@@ -1,0 +1,343 @@
+---
+title: Building from source
+description: Instructions for building OpenComic from source code for development or creating custom builds
+---
+
+This guide will walk you through building OpenComic from source on Windows, macOS, and Linux.
+
+## Requirements
+
+Before building OpenComic, ensure you have the following installed:
+
+<CardGroup cols={3}>
+  <Card title="Git" icon="git-alt">
+    For cloning the repository
+  </Card>
+  <Card title="Node.js" icon="node-js">
+    Version 14 or higher recommended
+  </Card>
+  <Card title="npm" icon="npm">
+    Comes with Node.js
+  </Card>
+</CardGroup>
+
+## Development setup
+
+### Clone and install
+
+<Steps>
+  <Step title="Clone the repository">
+    ```bash
+    git clone https://github.com/ollm/OpenComic.git
+    cd OpenComic
+    ```
+  </Step>
+
+  <Step title="Install dependencies">
+    ```bash
+    npm install
+    ```
+    
+    This will install all required packages and run post-install scripts.
+  </Step>
+
+  <Step title="Start development mode">
+    ```bash
+    npm start
+    ```
+    
+    This launches OpenComic in development mode with the Electron framework.
+  </Step>
+</Steps>
+
+<Note>
+  The first run may take longer as it compiles TypeScript files and generates necessary resources.
+</Note>
+
+### Development scripts
+
+| Script | Purpose |
+| --- | --- |
+| `npm start` | Launch OpenComic in development mode |
+| `npm run watch` | Watch for TypeScript changes and recompile |
+| `npm test` | Run tests and ESLint |
+| `npm run eslint` | Run ESLint on source files |
+
+## Building for production
+
+### Update from main branch
+
+Before building, ensure you have the latest code:
+
+```bash
+npm pull origin master
+npm install
+```
+
+### Build commands
+
+Use the following commands to build for specific platforms:
+
+<Tabs>
+  <Tab title="Windows">
+    ```bash
+    # Standard installer
+    npm run build-nsis
+    
+    # Portable version
+    npm run build-portable
+    
+    # Folder portable version
+    npm run build-folder-portable
+    
+    # Windows ARM64
+    npm run build-win-arm
+    
+    # All Windows builds
+    npm run build-win
+    ```
+  </Tab>
+
+  <Tab title="macOS">
+    ```bash
+    # DMG installer
+    npm run build-mac-dmg
+    
+    # PKG installer
+    npm run build-mac-pkg
+    
+    # All macOS builds (includes ARM)
+    npm run build-mac
+    
+    # Mac App Store build
+    npm run build-mac-store
+    ```
+    
+    <Note>
+      macOS builds require code signing certificates and notarization credentials in `./build/notarize.env`
+    </Note>
+  </Tab>
+
+  <Tab title="Linux">
+    ```bash
+    # Debian package
+    npm run build-deb
+    
+    # RPM package
+    npm run build-rpm
+    
+    # Snap package
+    npm run build-snap
+    
+    # Flatpak
+    npm run build-flatpak
+    
+    # AppImage
+    npm run build-appimage
+    
+    # Archive formats
+    npm run build-7z
+    npm run build-tar
+    
+    # All Linux builds
+    npm run build-linux
+    ```
+  </Tab>
+
+  <Tab title="Linux ARM64">
+    ```bash
+    # Debian ARM64
+    npm run build-deb-arm
+    
+    # RPM ARM64
+    npm run build-rpm-arm
+    
+    # Snap ARM64
+    npm run build-snap-arm
+    
+    # Flatpak ARM64
+    npm run build-flatpak-arm
+    
+    # AppImage ARM64
+    npm run build-appimage-arm
+    
+    # Archive formats ARM64
+    npm run build-7z-arm
+    npm run build-tar-arm
+    
+    # All Linux ARM builds
+    npm run build-linux-arm
+    ```
+  </Tab>
+</Tabs>
+
+### Build output
+
+All build artifacts are created in the `dist/` directory:
+
+```
+OpenComic/
+├── dist/
+│   ├── OpenComic.Setup.1.6.6.exe          # Windows installer
+│   ├── OpenComic-1.6.6.dmg                # macOS disk image
+│   ├── opencomic_1.6.6_amd64.deb          # Debian package
+│   ├── opencomic-1.6.6.x86_64.rpm         # RPM package
+│   ├── OpenComic-1.6.6.AppImage           # Linux AppImage
+│   └── ...
+```
+
+## Troubleshooting build issues
+
+<AccordionGroup>
+  <Accordion title="Build fails with 'Not exists' error (Linux/macOS)">
+    This error typically occurs with native dependencies. To fix:
+    
+    ```bash
+    cd ./build/node-zstd-native-dependencies
+    npm install --force
+    cd ../..
+    npm install
+    ```
+    
+    Then retry your build command.
+  </Accordion>
+
+  <Accordion title="Node-gyp build errors">
+    Ensure you have build tools installed:
+    
+    **Windows:**
+    ```bash
+    npm install --global windows-build-tools
+    ```
+    
+    **macOS:**
+    ```bash
+    xcode-select --install
+    ```
+    
+    **Linux:**
+    ```bash
+    # Debian/Ubuntu
+    sudo apt-get install build-essential
+    
+    # Fedora/RHEL
+    sudo dnf install @development-tools
+    
+    # Arch
+    sudo pacman -S base-devel
+    ```
+  </Accordion>
+
+  <Accordion title="Sharp/native module errors">
+    If you encounter errors with Sharp or other native modules:
+    
+    ```bash
+    npm rebuild
+    # or
+    npm install --force
+    ```
+  </Accordion>
+
+  <Accordion title="Electron build fails">
+    Clear Electron cache and reinstall:
+    
+    ```bash
+    rm -rf node_modules
+    npm cache clean --force
+    npm install
+    ```
+  </Accordion>
+
+  <Accordion title="TypeScript compilation errors">
+    Ensure TypeScript is compiled before building:
+    
+    ```bash
+    npm run prebuild
+    ```
+  </Accordion>
+</AccordionGroup>
+
+## Build customization
+
+### Electron Builder configuration
+
+Build settings are configured in `package.json` under the `build` section:
+
+```json
+{
+  "build": {
+    "appId": "org.opencomic.app",
+    "productName": "OpenComic",
+    "asar": true,
+    ...
+  }
+}
+```
+
+### Changing app metadata
+
+Edit `package.json` to change:
+
+- Application name: `name` and `productName`
+- Version: `version`
+- Description: `description`
+- Author: `author`
+- License: `license`
+
+### Custom build scripts
+
+You can create custom build scripts by adding them to the `scripts` section in `package.json`:
+
+```json
+{
+  "scripts": {
+    "build-custom": "npm run prebuild && electron-builder --linux deb rpm"
+  }
+}
+```
+
+## Platform-specific notes
+
+<AccordionGroup>
+  <Accordion title="Windows">
+    - **Portable builds**: Create self-contained executables that don't require installation
+    - **Folder portable**: Includes app data folder alongside executable for true portability
+    - **Code signing**: Required for production releases to avoid Windows SmartScreen warnings
+  </Accordion>
+
+  <Accordion title="macOS">
+    - **Notarization**: Required for distribution outside the Mac App Store
+    - **Universal builds**: Use `--universal` flag to create Intel + Apple Silicon builds
+    - **Certificates**: Requires Apple Developer account and certificates
+    - Configure notarization in `./build/notarize.env`
+  </Accordion>
+
+  <Accordion title="Linux">
+    - **Snap**: Requires snapcraft installed: `sudo snap install snapcraft --classic`
+    - **Flatpak**: May require additional flatpak-builder dependencies
+    - **AppImage**: Most portable option, works on most distributions
+    - **Repository builds**: Available on AUR for Arch Linux users
+  </Accordion>
+</AccordionGroup>
+
+## Contributing builds
+
+If you're building OpenComic for contribution:
+
+1. Fork the repository on GitHub
+2. Create a feature branch for your changes
+3. Test your build thoroughly
+4. Submit a pull request with detailed description
+
+See [CONTRIBUTING.md](https://github.com/ollm/OpenComic/blob/master/CONTRIBUTING.md) for more details.
+
+## Continuous Integration
+
+OpenComic uses GitHub Actions for automated builds. See `.github/workflows/` for CI configuration.
+
+## Additional resources
+
+- [Electron Builder Documentation](https://www.electron.build/)
+- [Node.js Downloads](https://nodejs.org/)
+- [OpenComic Repository](https://github.com/ollm/OpenComic)
+- [Report Build Issues](https://github.com/ollm/OpenComic/issues)

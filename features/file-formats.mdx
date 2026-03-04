@@ -1,0 +1,110 @@
+---
+title: Supported file formats
+description: Learn about all the image, compressed, and document formats supported by OpenComic
+---
+
+OpenComic supports a wide range of file formats for reading comics, manga, and digital books. This comprehensive format support ensures compatibility with virtually any comic file you might encounter.
+
+## Image formats
+
+OpenComic natively supports all major image formats:
+
+- **JPG/JPEG** - Standard JPEG images
+- **JP2** - JPEG 2000 format
+- **JXR** - JPEG XR format
+- **JXL** - JPEG XL format (next-generation)
+- **PNG** - Portable Network Graphics
+- **APNG** - Animated PNG
+- **AVIF** - AV1 Image File Format
+- **HEIC** - High Efficiency Image Container
+- **WEBP** - Modern web image format
+- **GIF** - Graphics Interchange Format
+- **SVG** - Scalable Vector Graphics
+- **BMP** - Bitmap images
+- **ICO** - Icon format
+
+These formats cover everything from traditional comic scans to modern high-efficiency formats, giving you flexibility in how your content is stored and displayed.
+
+## Compressed formats
+
+OpenComic can read comics from compressed archives without requiring manual extraction:
+
+### Standard comic archives
+
+- **CBZ** - Comic Book ZIP archive
+- **CBR** - Comic Book RAR archive
+- **CB7** - Comic Book 7-Zip archive
+- **CBT** - Comic Book TAR archive
+- **CBA** - Comic Book ACE archive
+
+### General archives
+
+- **ZIP** - Standard ZIP archives
+- **RAR** - WinRAR archives
+- **7Z** - 7-Zip archives
+- **TAR** - TAR archives
+- **LZH** - LHA/LZH archives
+- **ACE** - ACE archives
+
+<Note>
+OpenComic automatically caches extracted files for faster subsequent access. The cache is managed automatically to prevent excessive disk usage.
+</Note>
+
+## Document formats
+
+OpenComic supports common document and ebook formats:
+
+### PDF support
+
+- **PDF** - Portable Document Format
+- Full rendering support with vector graphics
+- Canvas-based rendering for high-quality output
+- Progress tracking and bookmarks
+
+### EPUB support
+
+- **EPUB** - Electronic Publication format (Alpha)
+- HTML-based rendering for reflowable content
+- Table of contents navigation
+- Chapter progress tracking
+
+<Warning>
+EPUB support is currently in alpha stage. While functional for most files, you may encounter compatibility issues with some EPUB files.
+</Warning>
+
+## Background music
+
+In addition to visual content, OpenComic can play background music from the comic folder:
+
+- **MP3** - MPEG Audio Layer 3
+- **M4A** - MPEG-4 Audio
+- **MP4** - MPEG-4 container
+- **WEBM** - WebM audio
+- **WEBA** - WebM Audio
+- **OGG** - Ogg Vorbis
+- **OPUS** - Opus audio codec
+- **WAV** - Waveform Audio
+- **FLAC** - Free Lossless Audio Codec
+
+<Tip>
+Place audio files in the same folder as your comic pages, and OpenComic will automatically detect and offer to play them as background music while reading.
+</Tip>
+
+## Format detection
+
+OpenComic automatically detects file formats based on:
+
+1. File extension
+2. File header analysis (magic numbers)
+3. Content inspection when needed
+
+This intelligent detection ensures that files are handled correctly even if they have incorrect or missing extensions.
+
+## Nested archives
+
+OpenComic supports reading comics inside nested compressed files. For example, you can read:
+
+- A CBZ file inside a ZIP archive
+- A folder of images inside a RAR file within a 7Z archive
+
+The application automatically extracts nested archives as needed, making your reading experience seamless.

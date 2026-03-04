@@ -1,0 +1,488 @@
+---
+title: AI image enhancement
+description: Use AI-powered upscaling, descreening, and artifact removal to improve comic image quality
+---
+
+OpenComic includes AI-powered image enhancement features that can dramatically improve the quality of low-resolution or compressed comic images. Using the `opencomic-ai-bin` package, you can upscale images, remove compression artifacts, and eliminate screening patterns.
+
+## AI features overview
+
+<CardGroup cols={3}>
+  <Card title="Upscaling" icon="maximize">
+    Increase image resolution 2-4× while preserving details
+  </Card>
+  
+  <Card title="Descreen" icon="filter">
+    Remove halftone screening patterns from scanned comics
+  </Card>
+  
+  <Card title="Artifact removal" icon="broom">
+    Clean up compression artifacts and noise
+  </Card>
+</CardGroup>
+
+## AI upscaling
+
+Upscaling uses machine learning models to intelligently increase image resolution beyond simple interpolation.
+
+### Features
+
+- **Scale factors**: 2×, 3×, or 4× original resolution
+- **Auto-scale**: Automatically determines optimal scale based on target resolution
+- **Noise reduction**: Optional noise level adjustment (0-3)
+- **Multiple models**: Choose from various AI models optimized for speed or quality
+- **Megapixel limit**: Set maximum input size to control performance
+
+### Available models
+
+<Tabs>
+  <Tab title="RealCUGAN">
+    Default upscaling model
+    
+    **Scales**: 2×, 3×, 4×
+    
+    **Noise levels**: -1, 0, 1, 2, 3
+    
+    **Speed**: Fast to Medium
+    
+    **Best for**: General purpose upscaling with good quality-speed balance
+  </Tab>
+  
+  <Tab title="Lite models">
+    OpenComic AI Upscale Lite
+    
+    **Scales**: 2×, 4×
+    
+    **Speed**: Very Fast
+    
+    **Best for**: Quick upscaling when performance is priority
+  </Tab>
+</Tabs>
+
+### Configuration
+
+<Steps>
+  <Step title="Enable upscaling">
+    Navigate to Reading Settings → AI Enhancement → Upscale
+    
+    Toggle "Active" to enable AI upscaling.
+  </Step>
+  
+  <Step title="Select model">
+    Choose an AI model based on your performance needs:
+    
+    - **RealCUGAN**: Best quality (default)
+    - **Lite models**: Faster processing
+    
+    Each model displays its relative speed (Very Fast, Fast, Medium, Slow, Very Slow).
+  </Step>
+  
+  <Step title="Set scale factor">
+    Choose the scale multiplier:
+    
+    - **2×**: Double resolution (moderate quality gain)
+    - **3×**: Triple resolution (significant improvement)
+    - **4×**: Quadruple resolution (maximum quality)
+    
+    Higher scales take longer to process.
+  </Step>
+  
+  <Step title="Configure auto-scale" icon="wand-magic">
+    Enable auto-scale to let OpenComic automatically choose the best scale factor:
+    
+    - Calculates based on target megapixels
+    - Prevents excessive upscaling
+    - Optimizes for your display resolution
+  </Step>
+  
+  <Step title="Adjust noise reduction" icon="sliders">
+    For models that support it, set noise reduction level (0-3):
+    
+    - **-1**: No noise reduction
+    - **0**: Minimal noise reduction
+    - **1-3**: Increasing noise reduction strength
+  </Step>
+  
+  <Step title="Set megapixel limit">
+    Configure maximum input image size:
+    
+    ```javascript
+    maxMegapixels: 3.0  // Only upscale images up to 3MP
+    ```
+    
+    Images larger than this limit won't be upscaled.
+  </Step>
+</Steps>
+
+### Auto-scale behavior
+
+When auto-scale is enabled:
+
+```javascript
+// Calculation formula
+scale = min(max(round((√maxMegapixels / √currentMegapixels) × 2), 2), 4)
+
+// Example: 1MP image with 3MP target
+// scale = min(max(round((√3 / √1) × 2), 2), 4)
+// scale = min(max(round(3.46), 2), 4) = 3
+```
+
+### Performance considerations
+
+<Warning>
+  AI upscaling is computationally intensive. Processing time depends on:
+  
+  - Image resolution
+  - Selected model
+  - Scale factor
+  - Your CPU/GPU capabilities
+</Warning>
+
+**Optimization tips:**
+
+- Use lower scale factors for large images
+- Enable auto-scale to prevent over-processing
+- Set appropriate megapixel limits
+- Choose faster models for real-time reading
+- Pre-process comics in advance for better experience
+
+## Descreening
+
+Descreening removes halftone patterns (dots/screens) commonly found in scanned print comics.
+
+### What is screening?
+
+Traditional print comics use halftone screening:
+
+- **Halftone dots**: Create gradients and colors through dot patterns
+- **Moiré patterns**: Interference patterns from scanning
+- **Screen angles**: Misaligned screen grids causing artifacts
+
+### Models
+
+<Tabs>
+  <Tab title="Hard Descreen">
+    OpenComic AI Descreen Hard Lite
+    
+    **Strength**: High
+    
+    **Speed**: Medium
+    
+    **Best for**: Heavy screening patterns, older scans
+  </Tab>
+  
+  <Tab title="Soft Descreen">
+    OpenComic AI Descreen Soft Lite
+    
+    **Strength**: Moderate
+    
+    **Speed**: Medium
+    
+    **Best for**: Light screening, preserving fine details
+  </Tab>
+</Tabs>
+
+### Configuration
+
+<Steps>
+  <Step title="Enable descreening">
+    Navigate to Reading Settings → AI Enhancement → Descreen
+    
+    Toggle "Active" to enable descreening.
+  </Step>
+  
+  <Step title="Select model">
+    Choose between hard or soft descreening:
+    
+    - **Hard**: Aggressive screening removal
+    - **Soft**: Gentle screening reduction
+  </Step>
+  
+  <Step title="Apply">
+    Changes apply immediately to your reading view.
+  </Step>
+</Steps>
+
+### When to use descreening
+
+<CardGroup cols={2}>
+  <Card title="Good candidates" icon="check">
+    - Scanned print comics
+    - Visible halftone patterns
+    - Moiré interference
+    - Older, low-quality scans
+  </Card>
+  
+  <Card title="Skip descreening" icon="xmark">
+    - Digital-first comics
+    - Clean, high-resolution scans
+    - Vector/redrawn artwork
+    - Already descreened images
+  </Card>
+</CardGroup>
+
+## Artifact removal
+
+Remove compression artifacts, blocking, and noise from JPEG and other lossy formats.
+
+### Common artifacts
+
+- **JPEG blocks**: 8×8 pixel compression blocks
+- **Mosquito noise**: Ringing around edges
+- **Color banding**: Posterization in gradients
+- **General noise**: Random pixel variations
+
+### Model
+
+OpenComic AI Artifact Removal Lite
+
+**Speed**: Medium
+
+**Strength**: Balanced artifact removal
+
+**Best for**: Compressed comic files (CBR, CBZ with JPEG images)
+
+### Configuration
+
+<Steps>
+  <Step title="Enable artifact removal">
+    Navigate to Reading Settings → AI Enhancement → Artifact Removal
+    
+    Toggle "Active" to enable.
+  </Step>
+  
+  <Step title="Select model">
+    Currently one model available (more coming in future updates).
+  </Step>
+  
+  <Step title="Apply">
+    Artifact removal processes images automatically while reading.
+  </Step>
+</Steps>
+
+### Effectiveness
+
+Artifact removal works best on:
+
+- **Moderate compression**: Visible but not extreme artifacts
+- **JPEG images**: Common in comic archives
+- **Color images**: Removes color fringing and banding
+- **Edge artifacts**: Cleans up ringing and halos
+
+<Note>
+  Heavily damaged or extremely compressed images may not fully recover. Artifact removal works best as preventive enhancement.
+</Note>
+
+## Combining enhancements
+
+You can enable multiple AI enhancements simultaneously:
+
+### Processing order
+
+```javascript
+1. Artifact Removal  // Clean up compression first
+2. Descreen         // Remove halftone patterns
+3. Upscale          // Scale up clean image
+```
+
+This order ensures:
+- Artifacts don't get amplified by upscaling
+- Screening patterns removed before scaling
+- Final upscaling produces cleanest result
+
+### Performance impact
+
+<Warning>
+  Enabling all three features significantly increases processing time. Consider:
+  
+  - Enable only needed enhancements
+  - Use faster models
+  - Process important comics in advance
+  - Disable for non-problematic content
+</Warning>
+
+## Model selection guide
+
+<AccordionGroup>
+  <Accordion title="For speed (real-time reading)">
+    - **Upscale**: Lite models, scale 2×
+    - **Descreen**: Soft model
+    - **Artifact removal**: Lite model
+    - **Megapixel limit**: 1.5-2.0 MP
+  </Accordion>
+  
+  <Accordion title="For quality (pre-processing)">
+    - **Upscale**: RealCUGAN, scale 3-4×
+    - **Descreen**: Hard model
+    - **Artifact removal**: Enabled
+    - **Megapixel limit**: 3.0+ MP
+  </Accordion>
+  
+  <Accordion title="For old scans">
+    - **Upscale**: RealCUGAN with noise reduction
+    - **Descreen**: Hard model (essential)
+    - **Artifact removal**: Enabled
+    - **Noise level**: 2-3
+  </Accordion>
+  
+  <Accordion title="For digital comics">
+    - **Upscale**: Only if low-res
+    - **Descreen**: Disabled
+    - **Artifact removal**: Only if compressed
+  </Accordion>
+</AccordionGroup>
+
+## Image interpolation
+
+In addition to AI upscaling, OpenComic supports traditional interpolation methods:
+
+### Available methods
+
+<Tabs>
+  <Tab title="Upscaling">
+    - **lanczos3**: Best quality (default)
+    - **lanczos2**: Good quality, faster
+    - **mitchell**: Balanced
+    - **cubic**: Smooth gradients
+    - **linear**: Fast, acceptable quality
+    - **nearest**: Fastest, pixelated
+  </Tab>
+  
+  <Tab title="Downscaling">
+    - **lanczos3**: Best quality (default)
+    - **mitchell**: Good quality
+    - **cubic**: Smooth results
+    - **linear**: Fast
+    - **nearest**: Fastest
+  </Tab>
+</Tabs>
+
+### Configuration
+
+Set interpolation method in settings:
+
+- **Upscaling method**: Used when enlarging images
+- **Downscaling method**: Used when shrinking images
+
+<Note>
+  AI upscaling bypasses interpolation methods. Set these for non-AI image scaling.
+</Note>
+
+## Caching and storage
+
+### AI processing cache
+
+Processed images are cached:
+
+```javascript
+// Cache location
+tempFolder/ai-upscale/{sha}/
+
+// Cached files
+- Original image hash
+- Processed image
+- Metadata
+```
+
+### Cache benefits
+
+- **Skip reprocessing**: Already-processed images load instantly
+- **Per-comic caching**: Each comic has its own cache folder
+- **Persistent**: Cache survives app restarts
+
+### Cache management
+
+<AccordionGroup>
+  <Accordion title="Automatic cleanup">
+    OpenComic automatically manages cache size, removing old entries as needed.
+  </Accordion>
+  
+  <Accordion title="Manual clearing">
+    Clear AI cache from settings to free disk space or force reprocessing.
+  </Accordion>
+</AccordionGroup>
+
+## Per-page configuration
+
+OpenComic allows different AI settings per page type:
+
+### Page-specific settings
+
+```javascript
+readingPagesConfig: {
+  single: {
+    readingAi: {
+      upscale: { active: true, scale: 3 },
+      descreen: { active: true },
+      artifactRemoval: { active: true }
+    }
+  },
+  double: {
+    readingAi: {
+      upscale: { active: false },  // Disable for double pages
+      descreen: { active: true },
+      artifactRemoval: { active: true }
+    }
+  },
+  webtoon: {
+    readingAi: {
+      upscale: { active: true, scale: 2 },  // Lower scale for webtoons
+      descreen: { active: false },
+      artifactRemoval: { active: true }
+    }
+  }
+}
+```
+
+### Benefits
+
+- **Optimize per format**: Different settings for different page types
+- **Performance tuning**: Disable intensive features for large pages
+- **Quality control**: Maximum enhancement where it matters most
+
+## Troubleshooting
+
+### Slow processing
+
+<Steps>
+  <Step title="Reduce scale factor">
+    Lower upscale multiplier (4× → 2×)
+  </Step>
+  
+  <Step title="Use faster models">
+    Switch to Lite models for better performance
+  </Step>
+  
+  <Step title="Lower megapixel limit">
+    Process only smaller images
+  </Step>
+  
+  <Step title="Disable features">
+    Turn off unneeded enhancements
+  </Step>
+</Steps>
+
+### Quality issues
+
+**Upscaling artifacts:**
+- Try different noise reduction levels
+- Switch models
+- Lower scale factor
+
+**Over-processing:**
+- Disable unnecessary features
+- Use softer descreen model
+- Reduce noise reduction
+
+### Crashes or errors
+
+1. **Check AI models**: Ensure models are properly installed
+2. **Verify system resources**: Ensure sufficient RAM
+3. **Update OpenComic**: Latest version has performance improvements
+4. **Clear cache**: Remove corrupted cached files
+
+---
+
+<Card title="Next: Customization" icon="palette" href="/advanced/customization">
+  Customize themes, shortcuts, filters, and tap zones
+</Card>

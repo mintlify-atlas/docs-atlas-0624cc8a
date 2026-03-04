@@ -1,0 +1,225 @@
+---
+title: Frequently Asked Questions
+description: Common questions and answers about OpenComic
+---
+
+Find answers to the most commonly asked questions about OpenComic.
+
+## General
+
+<AccordionGroup>
+  <Accordion title="What is OpenComic?">
+    OpenComic is a free and open-source comic and manga reader for desktop (Windows, macOS, and Linux). It supports a wide range of formats including CBZ, CBR, CB7, PDF, EPUB, and many image formats. It's designed to provide the best reading experience with features like multiple reading modes, cloud storage integration, and AI-powered image enhancement.
+  </Accordion>
+
+  <Accordion title="Is OpenComic free?">
+    Yes, OpenComic is completely free and open source under the GPL-3.0 license. You can download, use, and modify it without any cost. The source code is available on [GitHub](https://github.com/ollm/OpenComic).
+  </Accordion>
+
+  <Accordion title="What platforms does OpenComic support?">
+    OpenComic is available for:
+    - **Windows** (x64 and ARM64)
+    - **macOS** (Intel and Apple Silicon)
+    - **Linux** (x64 and ARM64)
+    
+    Multiple installation formats are available including installers, portable versions, and package manager formats (Snap, Flatpak, AppImage, etc.).
+  </Accordion>
+
+  <Accordion title="How do I update OpenComic?">
+    OpenComic includes a built-in update checker that notifies you when a new version is available. You can then download and install the latest version from the GitHub releases page or through your package manager if you installed via Snap, Flatpak, or similar.
+  </Accordion>
+</AccordionGroup>
+
+## File Formats
+
+<AccordionGroup>
+  <Accordion title="What comic formats does OpenComic support?">
+    OpenComic supports:
+    - **Compressed formats**: CBZ, CBR, CB7, CBT, CBA, ZIP, RAR, 7Z, TAR, LZH, ACE
+    - **Document formats**: PDF, EPUB (alpha support)
+    - **Image formats**: JPG, JP2, JXR, JXL, PNG, APNG, AVIF, HEIC, WEBP, GIF, SVG, BMP, ICO
+    - **Background music**: MP3, M4A, MP4, WEBM, WEBA, OGG, OPUS, WAV, FLAC
+  </Accordion>
+
+  <Accordion title="Can I read manga with OpenComic?">
+    Absolutely! OpenComic has a dedicated manga reading mode that provides right-to-left reading direction and reversed navigation controls. It also supports double page view with proper handling for horizontal manga pages.
+  </Accordion>
+
+  <Accordion title="Does OpenComic support webtoons?">
+    Yes, OpenComic has a dedicated webtoon mode optimized for vertically scrolling web comics. This mode provides smooth vertical scrolling and proper image rendering for long-strip comics.
+  </Accordion>
+
+  <Accordion title="Can I read comics from compressed archives?">
+    Yes, OpenComic can read comics directly from compressed archives (CBZ, CBR, CB7, ZIP, RAR, 7Z, etc.) without needing to extract them first. It handles nested archives and automatically detects comic formats.
+  </Accordion>
+</AccordionGroup>
+
+## Features
+
+<AccordionGroup>
+  <Accordion title="Can I read comics from cloud storage?">
+    Yes! OpenComic supports multiple server protocols:
+    - SMB (Windows file shares)
+    - FTP/FTPS
+    - SFTP/SSH/SCP
+    - S3 (Amazon S3 and compatible services)
+    - WebDAV/WebDAVS
+    
+    You can add these connections in Settings and access your comics as if they were local files.
+  </Accordion>
+
+  <Accordion title="Does OpenComic track my reading progress?">
+    Yes, OpenComic automatically saves your reading progress for each comic at the page level. It also supports bookmarks so you can save specific pages for quick access. Additionally, you can sync your reading progress with tracking services like AniList and MyAnimeList.
+  </Accordion>
+
+  <Accordion title="What are the AI image enhancement features?">
+    OpenComic includes three AI-powered image enhancement tools:
+    - **Upscaling**: Enhance image quality with 2-4× upscaling using RealCUGAN models
+    - **Descreening**: Remove halftone patterns from scanned manga
+    - **Artifact removal**: Clean up compression artifacts
+    
+    These features require downloading AI models on first use.
+  </Accordion>
+
+  <Accordion title="Can I use a gamepad to navigate?">
+    Yes, OpenComic has full gamepad support. You can use Xbox, PlayStation, Switch Pro controllers, and other standard gamepads to navigate through your library and read comics. Button mappings are customizable in Settings.
+  </Accordion>
+
+  <Accordion title="Does OpenComic support OPDS catalogs?">
+    Yes, OpenComic supports OPDS (Open Publication Distribution System) catalogs. You can add custom OPDS feeds to browse and download comics from online catalogs directly within the app.
+  </Accordion>
+</AccordionGroup>
+
+## Usage
+
+<AccordionGroup>
+  <Accordion title="How do I add comics to my library?">
+    You can add comics to your library in several ways:
+    1. Add master folders in Settings → Master Folders
+    2. Connect to remote servers in Settings → Servers
+    3. Drag and drop comic files or folders onto the OpenComic window
+    4. Use File → Open to browse and open a specific comic
+  </Accordion>
+
+  <Accordion title="How do I organize my comics?">
+    OpenComic provides several organization features:
+    - **Master folders**: Add multiple comic directories
+    - **Favorites**: Mark comics as favorites for quick access
+    - **Labels**: Create custom labels and tag comics
+    - **Sorting**: Sort by name, date, progress, or custom order
+    - **Views**: Choose between grid and list views
+  </Accordion>
+
+  <Accordion title="Can I customize keyboard shortcuts?">
+    Yes! All keyboard shortcuts are fully customizable. Go to Settings → Shortcuts to view and modify keyboard shortcuts, mouse button mappings, and tap zones.
+  </Accordion>
+
+  <Accordion title="How do I use portable mode?">
+    OpenComic offers portable versions that store all settings and data in the application folder rather than in your user directory. Download the portable version from GitHub releases and run it from any location, including USB drives. See the [Portable Mode guide](/guides/portable-mode) for details.
+  </Accordion>
+</AccordionGroup>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="OpenComic won't start. What should I do?">
+    Try these steps:
+    1. Make sure you have the latest version installed
+    2. Check that your system meets the minimum requirements
+    3. On Windows, try running as administrator
+    4. On Linux, ensure you have the required dependencies
+    5. Check the logs in the application data folder for error messages
+    
+    See the [Troubleshooting guide](/guides/troubleshooting) for more details.
+  </Accordion>
+
+  <Accordion title="Comics are loading slowly. How can I improve performance?">
+    Try these optimization tips:
+    - Reduce the number of preloaded pages in Settings
+    - Use a faster interpolation method (nearest or linear)
+    - Disable AI enhancements if enabled
+    - For compressed archives, consider extracting large files
+    - Use an SSD instead of HDD for better loading times
+    - Clear the cache in Settings if it's grown too large
+  </Accordion>
+
+  <Accordion title="I can't connect to my server. What's wrong?">
+    Common server connection issues:
+    - Verify the server URL format is correct (e.g., `smb://server/share`)
+    - Check your username and password
+    - Ensure the server is accessible from your network
+    - Try using IP address instead of hostname
+    - Check firewall settings on both client and server
+    - For SMB, ensure the share permissions are set correctly
+    
+    See the [Server Connections guide](/advanced/server-connections) for protocol-specific troubleshooting.
+  </Accordion>
+
+  <Accordion title="Where can I get help if my problem isn't listed here?">
+    If you need additional help:
+    - Check the [Troubleshooting guide](/guides/troubleshooting) for more detailed solutions
+    - Search for similar issues on [GitHub Issues](https://github.com/ollm/OpenComic/issues)
+    - Report a bug on [GitHub](https://github.com/ollm/OpenComic/issues/new)
+    - Ask the community for help
+  </Accordion>
+</AccordionGroup>
+
+## Contributing
+
+<AccordionGroup>
+  <Accordion title="How can I contribute to OpenComic?">
+    There are many ways to contribute:
+    - Report bugs and suggest features on GitHub
+    - Contribute code improvements or new features
+    - Help translate OpenComic into your language
+    - Improve documentation
+    - Support the project financially
+    
+    See the [Contributing guide](/community/contributing) for more information.
+  </Accordion>
+
+  <Accordion title="How do I translate OpenComic?">
+    OpenComic welcomes translations! To help translate:
+    1. Check the current translation status
+    2. Fork the repository on GitHub
+    3. Add or update translation files in the `languages/` folder
+    4. Submit a pull request
+    
+    See the [Translations guide](/community/translations) for detailed instructions.
+  </Accordion>
+</AccordionGroup>
+
+## Still have questions?
+
+If your question isn't answered here, check out these resources:
+
+<CardGroup cols={2}>
+  <Card
+    title="Support"
+    icon="life-ring"
+    href="/resources/support"
+  >
+    Get help from the community or report issues
+  </Card>
+  <Card
+    title="Troubleshooting"
+    icon="wrench"
+    href="/guides/troubleshooting"
+  >
+    Solutions to common problems
+  </Card>
+  <Card
+    title="GitHub Issues"
+    icon="github"
+    href="https://github.com/ollm/OpenComic/issues"
+  >
+    Search existing issues or ask a question
+  </Card>
+  <Card
+    title="Contributing"
+    icon="code-pull-request"
+    href="/community/contributing"
+  >
+    Learn how to contribute to OpenComic
+  </Card>
+</CardGroup>

@@ -1,0 +1,175 @@
+---
+title: Reading modes
+description: Explore different reading modes including manga mode, webtoon mode, double page view, and scroll vs slide navigation
+---
+
+OpenComic offers multiple reading modes to match your content type and personal preferences. Each mode is optimized for different types of comics and reading styles.
+
+## Manga mode
+
+Manga mode enables right-to-left reading order, which is standard for Japanese manga and some other Asian comics.
+
+### Key features
+
+- **Right-to-left navigation** - Pages advance from right to left
+- **Reversed double page order** - Right page appears before left page
+- **Reversed UI elements** - Navigation buttons and page indicators adapt to RTL
+- **Smart page distribution** - Automatically handles the blank first page
+
+<Tip>
+You can enable manga mode in the reading settings or use the keyboard shortcut to toggle it quickly while reading.
+</Tip>
+
+### How it works
+
+When manga mode is enabled:
+
+1. The reading direction reverses throughout the application
+2. Double page spreads show pages in the correct manga order
+3. Next/Previous buttons adapt their behavior
+4. The page slider reverses its direction
+
+## Webtoon mode
+
+Webtoon mode is designed for vertical-scrolling comics, particularly Korean webtoons and modern web comics.
+
+### Features
+
+- **Vertical scrolling** - Smooth scrolling from top to bottom
+- **Width adjustment** - Content adjusts to optimal reading width
+- **Continuous reading** - Seamless page transitions
+- **Touch-friendly** - Optimized for touchscreen devices
+- **Custom scroll speed** - 70% screen height per page turn
+
+<Note>
+Webtoon mode automatically enables scroll view and width adjustment for the best vertical reading experience.
+</Note>
+
+## Double page view
+
+Double page view displays two pages side-by-side, mimicking the experience of reading a physical book.
+
+### Configuration options
+
+- **Blank first page** - Optionally add a blank page at the start to align spreads correctly
+- **Horizontal page handling** - Choose whether horizontal images span both pages or remain single
+- **Aspect ratio detection** - Automatically detects horizontal vs vertical pages
+- **Blank page alignment** - Smart insertion of blank pages to keep spreads aligned
+
+<Accordion title="Advanced double page settings">
+
+**Do not apply to horizontals**
+
+When enabled, horizontal (landscape) images display across the full width instead of being paired with another page.
+
+**Align with next horizontal**
+
+Inserts blank pages before horizontal images to ensure proper alignment in double page mode.
+
+**Invisible blank pages**
+
+Hides blank placeholder pages while maintaining proper page alignment.
+
+**Invisible first blank page**
+
+Hides only the first blank page while keeping others visible.
+
+</Accordion>
+
+### How double page works
+
+The application calculates page distribution based on:
+
+1. Page aspect ratios (width/height)
+2. Your horizontal image preferences
+3. Blank page configuration
+4. Reading direction (manga mode)
+
+Pages are then distributed intelligently to create proper spreads.
+
+## View modes
+
+OpenComic offers three distinct view modes for page navigation:
+
+### Slide view
+
+Pages slide horizontally (or vertically in scroll mode) as you navigate.
+
+- **Smooth transitions** - Configurable animation speed
+- **Transform-based** - Uses CSS transforms for smooth 60fps animations
+- **Memory efficient** - Only renders visible pages plus buffer
+- **Touch gestures** - Swipe to navigate
+
+### Scroll view
+
+All pages are laid out in a continuous scrolling view.
+
+- **Continuous reading** - No breaks between pages
+- **Natural scrolling** - Use mouse wheel, trackpad, or touch
+- **Progress tracking** - Automatically tracks your position
+- **Smart page detection** - Identifies current page based on viewport center
+
+<Note>
+Scroll view works in both horizontal and vertical orientations, automatically adapting to your content and preferences.
+</Note>
+
+### Compact view
+
+A fade transition between pages without sliding animations.
+
+- **Instant page changes** - No sliding animation
+- **Fade transitions** - Optional fade effects
+- **Lower resource usage** - Minimal GPU utilization
+- **Keyboard navigation friendly** - Quick page turns
+
+## View adjustments
+
+### Adjust to width
+
+When enabled, pages scale to fit the full width of the reading area, with height determined by aspect ratio.
+
+### Adjust to height
+
+The default mode scales pages to fit the full height, with width determined by aspect ratio.
+
+### Original size mode
+
+Prevent images from being enlarged beyond their original dimensions:
+
+- Maintains image quality
+- Prevents pixelation on high-DPI displays
+- Scales down large images as needed
+- Centers smaller images
+
+## Margin and spacing
+
+Customize the reading experience with adjustable margins:
+
+- **Vertical margins** - Space above and below pages
+- **Horizontal margins** - Space on left and right sides
+- **Horizontal image margins** - Special margins for landscape images
+- **Independent controls** - Configure each margin separately
+
+## Image clipping
+
+Remove unwanted borders from comic pages:
+
+- **Top/Bottom clipping** - Remove horizontal borders
+- **Left/Right clipping** - Remove vertical borders
+- **Percentage-based** - Clip by percentage of image size
+- **Preserves aspect ratio** - Page layout adjusts automatically
+
+<Tip>
+Image clipping is particularly useful for scanned comics with white borders or margin artifacts.
+</Tip>
+
+## Switching between modes
+
+You can switch reading modes at any time:
+
+1. Your current page position is preserved
+2. Settings apply immediately
+3. Zoom level can optionally persist (global zoom)
+4. Reading progress continues tracking
+
+Each mode can be customized independently, and settings are remembered for future reading sessions.
